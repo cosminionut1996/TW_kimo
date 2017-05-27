@@ -31,6 +31,7 @@ class Copil(models.Model):
     coliziuni_obiecte=models.IntegerField()
     izbituri_sol=models.IntegerField()
     contact_animale=models.IntegerField()
+    ultima_locatie=models.CharField(max_length=25)
 
 
     class Meta:

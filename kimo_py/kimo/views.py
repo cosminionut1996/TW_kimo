@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.views.generic import View
 
 from django.contrib.auth import authenticate
+from kimo.models import Copil
+from kimo.models import Legatura
 
 
 from kimo.models import Utilizator
@@ -92,7 +94,13 @@ class UserSpace(View):
 class Profile(View):
 
     def get(self, request):
-        return render(request, 'kimo/profile.html')
+        idp=10055
+        l=list()
+        for linie in Copil.objects.raw('SELECT * FROM Copil c JOIN LEGATURA l on l.id_copil=c.id where l.id_parinte={}'.format(idp)):
+            l.append({'nume': linie.nume+' '+linie.prenume, 'locatie':linie.ultima_locatie})
+            print(linie.nume, linie.prenume, linie.ultima_locatie)
+        return render(request, 'kimo/profile.html', context={
+            "result": l})
 
     def post(self, request):
         username = request.POST.get('username')

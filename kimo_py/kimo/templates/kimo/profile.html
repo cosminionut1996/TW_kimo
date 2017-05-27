@@ -31,6 +31,7 @@
 <link href="{% static 'css/fade_in.css' %}" rel="stylesheet">
 
 <div style="margin-top: 150px;">
+    {% for linie in result %}
     <div class="panel1 fadeInClass">
         <div class="onoffswitch" style="float:right;">
             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
@@ -40,24 +41,11 @@
             </label>
         </div>
 
-        <h3>Dorin Gradinaru</h3>
-        <p>Ultima locatie: Pragesti</p>
+        <h3>{{ linie.nume}}</h3>
+        <p>Ultima locatie: {{ linie.locatie }}</p>
         <p id="p1">Aproape de Bogdan Apetrei.</p>
     </div>
-
-    <div class="panel1 fadeInClass">
-        <div class="onoffswitch" style="float:right;">
-            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch1" checked>
-            <label class="onoffswitch-label" for="myonoffswitch1">
-                <span class="onoffswitch-inner"></span>
-                <span class="onoffswitch-switch"></span>
-            </label>
-        </div>
-
-        <h3>Ioana Gradinaru</h3>
-        <p>Ultima locatie: Damienesti</p>
-        <p id="p2">Aproape de Alex Croitoru si Maria Unghianu.</p>
-    </div>
+    {% endfor %}
 </div>
 {% endblock%}
 
