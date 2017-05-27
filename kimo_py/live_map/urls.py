@@ -20,4 +20,5 @@ from . import views
 app_name = 'live_map'
 urlpatterns = [
     url(r'^', views.Map.as_view(), name='index'),
+    url(r'^danger', views.Danger.as_view(), name='danger'),
 ]
