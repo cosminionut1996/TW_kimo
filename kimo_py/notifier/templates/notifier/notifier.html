@@ -1,0 +1,88 @@
+{% extends "profile.html" %}
+
+{% load static %}
+
+{% block title %}Notification{% endblock %}
+
+{% block content %}
+
+<div id="content" class="fadeInClass" style="margin-top: 70px;">
+   <div class="notification red">
+    <div class="info">
+      <h1>ALERT</h1>
+      <p>Posibila coliziune cu un obiect!</p>
+    </div>
+    <div class="icon">
+      <i class="fa fa-heart"></i>
+    </div>
+  </div>
+
+  <div class="notification green">
+    <div class="info">
+      <h1>SIGNAL CONFIRMATION</h1>
+      <p>Copilul dumneavoastra a primit semnalul trimis!</p>
+    </div>
+    <div class="icon">
+      <i class="fa fa-asterisk"></i>
+    </div>
+  </div>
+
+  <div class="notification red">
+    <div class="info">
+      <h1>ALERT</h1>
+      <p>Copilul dumneavoastra a intrat intr-o zona periculoasa!</p>
+    </div>
+    <div class="icon">
+      <i class="fa fa-heart"></i>
+    </div>
+  </div>
+
+  <div class="notification orange">
+    <div class="info">
+      <h1>WARNING</h1>
+      <p>Copilul dumneavoastra se apropie de o zona periculoasa!</p>
+    </div>
+    <div class="icon">
+      <i class="fa fa-heart"></i>
+    </div>
+  </div>
+
+
+  <div class="notification green">
+    <div class="info">
+      <h1>START MONITORING</h1>
+      <p>Copilul dumneavoastra este supravegheat!</p>
+    </div>
+    <div class="icon">
+      <i class="fa fa-heart"></i>
+    </div>
+  </div>
+
+      <div class="notification green">
+    <div class="info">
+      <h1>CONGRATULATION</h1>
+      <p>Tocmai v-ati inregistrat cu succes!</p>
+    </div>
+    <div class="icon">
+      <i class="fa fa-heart"></i>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+     <script src="{% static 'scripts/not.js' %}"></script>
+     <link href="{% static 'css/not.css' %}" rel="stylesheet">
+     <style>
+
+.fadeInClass {
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    0%   {opacity: 0; margin-top: -700px; position: relative; z-index: 1;}
+    100%   {opacity: 0.9; margin-top: 70px; position: relative; z-index: 10;}
+}
+
+     </style>
+{% endblock %}

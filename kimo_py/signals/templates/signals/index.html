@@ -1,0 +1,27 @@
+{% extends "profile.html" %}
+
+{% load static %}
+
+{% block title %}Signals{% endblock %}
+
+{% block content %}
+
+<nav id="menu" >
+     <ul>
+      <li class="house" ><a href="#">Home</a></li>
+      <li class="rain"><a href="#">Rain</a></li>
+      <li class="danger"><a href="#">Danger</a></li>
+
+  <div class="current">
+    <div class="top-arrow"></div>
+    <div class="current-back"></div>
+    <div class="bottom-arrow"></div>
+  </div>
+    </ul>
+</nav>
+
+{% endblock %}
+
+{% block footer %}
+<link href="{% static 'css/signal.css' %}" rel="stylesheet">
+{% endblock %}

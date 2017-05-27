@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="height:100%;">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Eye_I.jpg/614px-Eye_I.jpg">
+    <title>{% block title %}KIMO{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'bootstrap/navbar.css' %}" rel="stylesheet">
+    <link href="{% static 'css/sticky-footer.css' %}" rel="stylesheet">
+    <style>
+
+    </style>
+  </head>
+
+  <body style="height:100%;">
+    <div class="container-fluid" id="top" style="height:100%">
+      <nav id="top section" class="navbar navbar-default" style="border-color: black; opacity: 0.9;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"
+               style="background: #331900; color: ivory; font-weight: bold;">KIMO</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+            {% block navbar %}
+            {% endblock %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              {% block logout %}
+              {% endblock %}
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+      <div id="mid section" style="height:100%;">
+        {% block main %}
+        <div class="row">
+          <div class="col-md-2">
+            {% block submenu %}
+            {% endblock %}
+          </div>
+          <div class="col-md-10 pull-left">
+            {% block content %}
+            {% endblock %}
+          </div>
+        </div>
+        {% endblock %}
+      </div>
+    </div>
+
+    <footer class="footer container" id="footer">
+      <div class="row" id="dragbar"
+           style="height: 5px; cursor:row-resize; background-color: #dedede;">
+      </div>
+      <div class="row">
+        <div class="text-center col-md-10">
+          <div class="text-left" id="error"
+               style="height: 60px; overflow-y: auto; padding: 10px;">
+              {{ error|linebreaks }}
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="spinner" id="loader"
+               style="margin-top: 7px; visibility: hidden;">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <link href="{% static 'css/spinner.css' %}" rel="stylesheet">
+    <script src="{% static 'ajax/jquery.min.js' %}"></script>
+    <script src="{% static 'scripts/functions.js' %}"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <link href="{% static 'css/background.css' %}" rel="stylesheet">
+    {% block footer %}
+
+    {% endblock %}
+  </body>
+
+</html>

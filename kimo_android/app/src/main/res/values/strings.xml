@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kimo</string>
+    <string name="example_edittext">Intoduce-ti codul</string>
+    <string name="valideaza">Valideaza</string>
+</resources>

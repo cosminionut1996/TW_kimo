@@ -1,0 +1,60 @@
+{% extends 'crud.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">
+            <input autocomplete="off" class="form-control"
+                   id="insert-nume" name="nume"
+                   placeholder="Nume" type="text">
+            <br>
+            <input autocomplete="off" class="form-control"
+                   name="prenume"
+                   placeholder="Prenume" type="text">
+            <br>
+            <input autocomplete="off" class="form-control"
+                   name="adresa"
+                   placeholder="Adresa" type="text">
+            <br>
+            <input autocomplete="off" class="form-control"
+                   name="telefon"
+                   placeholder="Telefon" type="text">
+            <br>
+            <input autocomplete="off" class="form-control"
+                   name="username"
+                   placeholder="Username" type="text">
+            <br>
+            <input autocomplete="off" class="form-control"
+                   name="parola"
+                   placeholder="Parola" type="text">
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="switch">
+                        <input type="checkbox" id="licenta" name="sw_licenta">
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+                <div class="cold-md-8">
+                    <label for="licenta" name="lb_licenta" id="lb_licenta"
+                           style="font-size:25px; color:#606060;">
+                        FREE
+                    </label>
+                </div>
+            </div>
+            <input autocomplete="off" class="form-control"
+                   name="expirare"
+                   placeholder="Data expirare" type="text">
+            <br>
+            <input autocomplete="off" class="form-control"
+                   name="id"
+                   placeholder="ID" type="text">
+            <br>
+
+            <button type="submit" onclick="show_loader()"
+                    class="btn btn-success btn-block">Update</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

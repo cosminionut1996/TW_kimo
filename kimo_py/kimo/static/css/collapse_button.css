@@ -1,0 +1,20 @@
+input.button-add {
+    background-image: url(http://www.myiconfinder.com/uploads/iconsets/256-256-3f1cfc138ecea4a724b2102553d10f7a-Settings.png);
+    background-repeat: no-repeat;  /* make the background image appear only once */
+    background-size:     cover;                      /* <------ */
+    background-position: center center;
+    border: none;           /* assuming we don't want any borders */
+    cursor: pointer;        /* make the cursor like hovering over an <a> element */
+    height: 30px;           /* make this the size of your image */
+    width:  30px;
+    opacity: 0.3;
+    padding: 0;
+    padding-top: 0px;
+
+
+
+}
+
+.colapse-button-v{
+padding-top: 100px;
+}

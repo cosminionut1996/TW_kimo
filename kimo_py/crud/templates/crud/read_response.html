@@ -1,0 +1,51 @@
+{% extends 'crud.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row ">
+        <div class="col-md-10">
+            <table class="table table-hover table-bordered text-center"
+                   style="border: gray solid 2px !important;">
+                <tr>
+                    <th>ID</th>
+                    <th>NUME</th>
+                    <th>PRENUME</th>
+                    <th>SUBSCRIPTIE</th>
+                    <th>ADRESA</th>
+                    <th>TELEFON</th>
+                    <th>USERNAME</th>
+                    <th>PAROLA</th>
+                    <th>EXPIRARE</th>
+                </tr>
+                {% for item in query_result %}
+                <tr>
+                    <th>{{ item.id }}</th>
+                    <th>{{ item.nume }}</th>
+                    <th>{{ item.prenume }}</th>
+                    <th>{{ item.subscriptie }}</th>
+                    <th>{{ item.adresa }}</th>
+                    <th>{{ item.telefon }}</th>
+                    <th>{{ item.username }}</th>
+                    <th>{{ item.parola }}</th>
+                    <th>{{ item.expirare }}</th>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div  class="col-md-2">
+            <label>
+                <a href="{% url 'crud:read' %}?page={{ page|add:'1' }}&rows={{ rows }}">
+                    NEXT PAGE
+                </a>
+            </label>
+            <br>
+            <label>
+                <a href="{% url 'crud:read' %}?page={{ page|add:'-1' }}&rows={{ rows }}">
+                    PREVIOUS PAGE
+                </a>
+            </label>
+        </div>
+    </div>
+</form>
+{% endblock %}

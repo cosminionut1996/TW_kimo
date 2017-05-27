@@ -1,0 +1,18 @@
+{% extends 'crud.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">
+            <label>Sterge inregistrarea cu id-ul urmator</label>
+            <input autocomplete="off" class="form-control"
+                   id="insert-nume" name="id"
+                   placeholder="ID" type="text">
+            <br>
+            <button type="submit" onclick="show_loader()"
+                    class="btn btn-warning btn-block">DELETE</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

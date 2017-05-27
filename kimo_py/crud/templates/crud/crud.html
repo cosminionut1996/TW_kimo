@@ -1,0 +1,30 @@
+{% extends "base_nav.html" %}
+
+{% load static %}
+
+{% block title %}
+CRUD
+{% endblock %}
+
+{% block submenu %}
+    <div id="menu">
+        <a href="{% url 'crud:insert' %}"
+           class="btn btn-default btn-block">Insert</a><br>
+        <a href="{% url 'crud:read' %}"
+           class="btn btn-default btn-block">Read</a><br>
+        <a href="{% url 'crud:update' %}"
+           class="btn btn-default btn-block">Update</a><br>
+        <a href="{% url 'crud:delete' %}"
+           class="btn btn-default btn-block">Delete</a><br>
+        <a href="{% url 'crud:export' %}"
+           class="btn btn-default btn-block">Export</a><br>
+        </div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+<link href="{% static 'css/slider.css' %}" rel="stylesheet">
+<script src="{% static 'scripts/crud_insert_slider.js' %}"></script>
+{% endblock %}

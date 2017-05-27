@@ -1,0 +1,160 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="fadeInClass">
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<div id="chartdiv"></div>
+</div>
+<script>
+var chart = AmCharts.makeChart("chartdiv", {
+    "type": "serial",
+    "theme": "light",
+    "dataProvider": [{
+        "date": "2017-03-30",
+        "value": 0
+    }, {
+        "date": "2017-04-01",
+        "value": 2
+    }, {
+        "date": "2017-04-02",
+        "value": 2
+    }, {
+        "date": "2017-04-03",
+        "value": 4
+    }, {
+        "date": "2017-04-04",
+        "value": 1
+    }, {
+        "date": "2017-04-05",
+        "value": 0
+    }, {
+        "date": "2017-04-06",
+        "value": 0
+    }, {
+        "date": "2017-04-07",
+        "value": 0
+    }, {
+        "date": "2017-04-08",
+        "value": 1
+    }, {
+        "date": "2017-04-09",
+        "value": 1
+    }, {
+        "date": "2017-04-10",
+        "value": 2
+    }, {
+        "date": "2017-04-11",
+        "value": 0
+    }, {
+        "date": "2017-04-12",
+        "value": 2
+    }, {
+        "date": "2017-04-13",
+        "value": 0
+    }, {
+        "date": "2017-04-14",
+        "value": 1
+    }, {
+        "date": "2017-04-15",
+        "value": 0
+    }, {
+        "date": "2017-04-16",
+        "value": 0
+    }, {
+        "date": "2017-04-17",
+        "value": 1
+    }, {
+        "date": "2017-04-18",
+        "value": 1,
+
+    }, {
+        "date": "2017-04-19",
+        "value": 1
+    }, {
+        "date": "2017-04-20",
+        "value": 0
+    }, {
+        "date": "2017-04-21",
+        "value": 2
+    }, {
+        "date": "2017-04-22",
+        "value": 3
+    }, {
+        "date": "2017-04-23",
+        "value": 0
+    }, {
+        "date": "2017-04-24",
+        "value": 0
+    }],
+    "valueAxes": [{
+        "axisAlpha": 0,
+        "dashLength": 4,
+        "position": "left"
+    }],
+    "graphs": [{
+        "bulletSize": 14,
+        "customBullet": "https://www.amcharts.com/lib/3/images/star.png?x",
+        "customBulletField": "customBullet",
+        "valueField": "value",
+         "balloonText":"<div style='margin:10px; text-align:left;'><span style='font-size:13px'>[[category]]</span><br><span style='font-size:18px'>Value:[[value]]</span>",
+    }],
+    "marginTop": 20,
+    "marginRight": 70,
+    "marginLeft": 40,
+    "marginBottom": 20,
+    "chartCursor": {
+        "graphBulletSize": 1.5,
+     	"zoomable":false,
+      	"valueZoomable":true,
+         "cursorAlpha":0,
+         "valueLineEnabled":true,
+         "valueLineBalloonEnabled":true,
+         "valueLineAlpha":0.2
+    },
+    "autoMargins": false,
+    "dataDateFormat": "YYYY-MM-DD",
+    "categoryField": "date",
+    "valueScrollbar":{
+      "offset":30
+    },
+    "categoryAxis": {
+        "parseDates": true,
+        "axisAlpha": 0,
+        "gridAlpha": 0,
+        "inside": true,
+        "tickLength": 0
+    },
+    "export": {
+        "enabled": true
+    }
+});
+</script>
+
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+  background: white;
+  opacity: 0.9;
+}
+</style>
+
+<style>
+
+.fadeInClass {
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    0%   {opacity: 0; top: -50%; position: relative;}
+    100%   {opacity: 0.9; top: 0%; position: relative;}
+}
+
+</style>
+
+
+{% endblock %}

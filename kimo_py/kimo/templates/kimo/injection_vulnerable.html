@@ -1,0 +1,19 @@
+{% extends 'crud.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">
+            <label>SELECT * FROM USERS WHERE nume = <br>
+                   Aici se poate injecta cod sql.</label>
+            <input autocomplete="off" class="form-control"
+                   id="insert-nume" name="nume"
+                   placeholder="Nume" type="text">
+            <br>
+            <button type="submit" onclick="show_loader()"
+                    class="btn btn-warning btn-block">Insert</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

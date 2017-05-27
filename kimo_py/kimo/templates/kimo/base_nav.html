@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+
+{% block navbar %}
+    <a class="navbar-brand navbar_button" href="{% url 'kimo:profile' %}">Profile</a>
+    <a class="navbar-brand navbar_button" href="{% url 'account_settings:add_child' %}">Add Child</a>
+    <a class="navbar-brand navbar_button" href="{% url 'live_map:index' %}">Live Map</a>
+    <a class="navbar-brand navbar_button" href="{% url 'notifier:notification' %}">Notification</a>
+    <a class="navbar-brand navbar_button" href="{% url 'statistics:index' %}">Statistics</a>
+    <a class="navbar-brand navbar_button" href="{% url 'signals:index' %}">Signals</a>
+
+{% endblock %}
+
+{% block logout %}
+    <li>
+        <a class="navbar-brand navbar_button " href="{% url 'kimo:index' %} ">LogOut</a>
+    </li>
+{% endblock %}
+
+
+{% block footer %}
+    <link href="{% static 'css/navbar_button.css' %}" rel="stylesheet">
+{% endblock %}

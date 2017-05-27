@@ -1,0 +1,21 @@
+{% extends 'crud.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">
+            <input autocomplete="off" class="form-control"
+                   id="insert-nume" name="username"
+                   placeholder="Username" type="text">
+            <br>
+            <input autocomplete="off" class="form-control"
+                   name="password"
+                   placeholder="Password" type="text">
+            <br>
+            <button type="submit" onclick="show_loader()"
+                    class="btn btn-success btn-block">Login</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

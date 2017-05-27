@@ -1,0 +1,67 @@
+{% extends "base_nav.html" %}
+
+{% load static %}
+
+
+{% block submenu %}
+<link href="{% static 'css/profile_div.css' %}" rel="stylesheet">
+<aside class="profile-card">
+
+    <header>
+        <a href="#">
+            <img src="https://scontent-otp1-1.xx.fbcdn.net/v/t1.0-9/16195304_1809855595944866_1526919402083620382_n.jpg?oh=297e81cc9702f2b2783de37f9ac9a076&oe=597BDAAA" />
+        </a>
+        <h1>Stefan Gradinaru</h1>
+        <h2>2 Copii</h2>
+    </header>
+
+    <div class="profile-bio">
+        <p>google@stefan.gradinaru</p>
+        <p>Club Birzar @ Pragesti</p>
+        <a class="button" href="{% url 'account_settings:change_password' %}">
+            Change password</a>
+    </div>
+
+</aside>
+{% endblock %}
+
+
+{% block content %}
+<link href="{% static 'css/onoffswitch.css' %}" rel="stylesheet">
+<link href="{% static 'css/fade_in.css' %}" rel="stylesheet">
+
+<div style="margin-top: 150px;">
+    <div class="panel1 fadeInClass">
+        <div class="onoffswitch" style="float:right;">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+            <label class="onoffswitch-label" for="myonoffswitch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+
+        <h3>Dorin Gradinaru</h3>
+        <p>Ultima locatie: Pragesti</p>
+        <p id="p1">Aproape de Bogdan Apetrei.</p>
+    </div>
+
+    <div class="panel1 fadeInClass">
+        <div class="onoffswitch" style="float:right;">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch1" checked>
+            <label class="onoffswitch-label" for="myonoffswitch1">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+
+        <h3>Ioana Gradinaru</h3>
+        <p>Ultima locatie: Damienesti</p>
+        <p id="p2">Aproape de Alex Croitoru si Maria Unghianu.</p>
+    </div>
+</div>
+{% endblock%}
+
+
+{% block footer %}
+
+{% endblock %}
