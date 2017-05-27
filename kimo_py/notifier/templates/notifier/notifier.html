@@ -7,66 +7,56 @@
 {% block content %}
 
 <div id="content" class="fadeInClass" style="margin-top: 70px;">
-   <div class="notification red">
-    <div class="info">
-      <h1>ALERT</h1>
-      <p>Posibila coliziune cu un obiect!</p>
-    </div>
-    <div class="icon">
-      <i class="fa fa-heart"></i>
-    </div>
-  </div>
 
-  <div class="notification green">
-    <div class="info">
-      <h1>SIGNAL CONFIRMATION</h1>
-      <p>Copilul dumneavoastra a primit semnalul trimis!</p>
-    </div>
-    <div class="icon">
-      <i class="fa fa-asterisk"></i>
-    </div>
-  </div>
+     {% for linie in result %}
+     {% if linie.culoare == 'red' %}
+     <div class="notification red">
+      <div class="info">
+        <h1>{{ linie.titlu }}</h1>
+        <p>{{ linie.continut }}</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-heart"></i>
+      </div>
+     </div>
+    {% endif%}
 
-  <div class="notification red">
-    <div class="info">
-      <h1>ALERT</h1>
-      <p>Copilul dumneavoastra a intrat intr-o zona periculoasa!</p>
-    </div>
-    <div class="icon">
-      <i class="fa fa-heart"></i>
-    </div>
-  </div>
+    {% if linie.culoare == 'orange' %}
+     <div class="notification orange">
+      <div class="info">
+        <h1>{{ linie.titlu }}</h1>
+        <p>{{ linie.continut }}</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-heart"></i>
+      </div>
+     </div>
+    {% endif%}
 
-  <div class="notification orange">
-    <div class="info">
-      <h1>WARNING</h1>
-      <p>Copilul dumneavoastra se apropie de o zona periculoasa!</p>
-    </div>
-    <div class="icon">
-      <i class="fa fa-heart"></i>
-    </div>
-  </div>
+    {% if linie.culoare == 'green' %}
+     <div class="notification green">
+      <div class="info">
+        <h1>{{ linie.titlu }}</h1>
+        <p>{{ linie.continut }}</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-heart"></i>
+      </div>
+     </div>
+    {% endif%}
 
+    {% empty %}
+      <div class="notification red">
+        <div class="info">
+          <h1>TZAPA</h1>
+          <p>TZAPA X2</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-heart"></i>
+        </div>
+      </div>
+    {% endfor %}
 
-  <div class="notification green">
-    <div class="info">
-      <h1>START MONITORING</h1>
-      <p>Copilul dumneavoastra este supravegheat!</p>
-    </div>
-    <div class="icon">
-      <i class="fa fa-heart"></i>
-    </div>
-  </div>
-
-      <div class="notification green">
-    <div class="info">
-      <h1>CONGRATULATION</h1>
-      <p>Tocmai v-ati inregistrat cu succes!</p>
-    </div>
-    <div class="icon">
-      <i class="fa fa-heart"></i>
-    </div>
-  </div>
 </div>
 {% endblock %}
 

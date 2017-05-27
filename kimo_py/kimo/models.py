@@ -52,7 +52,7 @@ class Legatura(models.Model):
     class Meta:
         db_table= 'LEGATURA'
 
-class Zona_Aprobata:
+class Zona_Aprobata(models.Model):
     id = models.IntegerField(primary_key=True)
     id_parinte = models.IntegerField()
     id_copil = models.IntegerField()
@@ -66,7 +66,7 @@ class Zona_Aprobata:
     class Meta:
         db_table= 'ZONA_APROBATA'
 
-class Zona_Risc:
+class Zona_Risc(models.Model):
     id=models.IntegerField(primary_key=True)
     grad_pericol=models.IntegerField()
     tip_pericol=models.CharField(max_length=30)
@@ -78,11 +78,11 @@ class Zona_Risc:
     class Meta:
         db_table='ZONA_RISC'
 
-class Notificari:
+class Notificari(models.Model):
     id=models.IntegerField(primary_key=True)
     titlu=models.CharField(max_length=20)
     continut=models.CharField(max_length=100)
-    ora=models.DateField()
+    ora=models.DateTimeField()
     culoare=models.CharField(max_length=15)
     id_parinte=models.IntegerField()
 
