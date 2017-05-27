@@ -1,22 +1,28 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser
 
 
 # Create your models here.
-class Utilizator(models.Model):
+class Utilizator(AbstractBaseUser):
     """This model will store information about all the workers."""
     id = models.IntegerField(primary_key=True)
     nume = models.CharField(max_length=26)
     prenume = models.CharField(max_length=26)
     subscriptie = models.CharField(max_length=26)
     adresa = models.CharField(max_length=128)
-    localitate=models.CharField(max_length=20)
+    localitate = models.CharField(max_length=20)
     telefon = models.CharField(max_length=26)
     username = models.CharField(max_length=26)
     parola = models.CharField(max_length=26)
     expirare = models.DateField()
 
+    USERNAME_FIELD = 'username'
+    PASSWORD_FIELD = 'parola'
+    REQUIRED_FIELDS = (username, parola)
+
     class Meta:
         db_table = "UTILIZATOR"
+
 
 class Copil(models.Model):
     id=models.IntegerField(primary_key=True)

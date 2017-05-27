@@ -102,6 +102,8 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = ['kimo.backend.auth.MyAuthenticationBackend']
+AUTH_USER_MODEL = 'kimo.Utilizator'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

@@ -2,6 +2,9 @@ from django.db import connection
 from django.shortcuts import render
 from django.views.generic import View
 
+from django.contrib.auth import authenticate
+
+
 from kimo.models import Utilizator
 
 import cx_Oracle
@@ -20,7 +23,16 @@ class Login(View):
         return render(request, 'kimo/login.html')
 
     def post(self, request):
-        return render(request, 'kimo/login.html')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        remember = request.POST.get('remember')
+
+        r = authenticate(request, username=username, password=password)
+        print(r, username)
+
+        return render(request, 'kimo/login.html', context={
+            'error': r
+        })
 
 
 class Register(View):
@@ -83,4 +95,13 @@ class Profile(View):
         return render(request, 'kimo/profile.html')
 
     def post(self, request):
-        return render(request, 'kimo/profile.html')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        remember = request.POST.get('remember')
+
+        r = authenticate(request, username=username, password=password)
+        print(r, username)
+
+        return render(request, 'kimo/profile.html', context={
+            'error': r
+        })
