@@ -102,8 +102,9 @@ DATABASES = {
     }
 }
 
-AUTHENTICATION_BACKENDS = ['kimo.backend.auth.MyAuthenticationBackend']
-AUTH_USER_MODEL = 'kimo.Utilizator'
+# Auth
+# AUTH_USER_MODEL = 'kimo.Utilizator'
+# AUTHENTICATION_BACKENDS = ('kimo.backend.auth.MyAuthenticationBackend',)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -144,3 +145,5 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_URL = 'kimo:index'
+
+SESSION_USER_ID_FIELD_NAME = 'utilizator_id'
