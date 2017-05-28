@@ -1,9 +1,10 @@
+from settings import SESSION_USER_ID_FIELD_NAME
+
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
 
 
 # Create your models here.
-class Utilizator(AbstractBaseUser):
+class Utilizator(models.Model):
     """This model will store information about all the workers."""
     id = models.IntegerField(primary_key=True)
     nume = models.CharField(max_length=26)
@@ -12,46 +13,55 @@ class Utilizator(AbstractBaseUser):
     adresa = models.CharField(max_length=128)
     localitate = models.CharField(max_length=20)
     telefon = models.CharField(max_length=26)
-    username = models.CharField(max_length=26)
+    username = models.CharField(max_length=26, unique=True)
     parola = models.CharField(max_length=26)
     expirare = models.DateField()
-
-    USERNAME_FIELD = 'username'
-    PASSWORD_FIELD = 'parola'
-    REQUIRED_FIELDS = (username, parola)
 
     class Meta:
         db_table = "UTILIZATOR"
 
+    @classmethod
+    def authenticate(cls, username, password):
+        try:
+            return cls.objects.get(username=username, parola=password)
+        except Exception:
+            return None
+
+    def login(self, request):
+        request.session[SESSION_USER_ID_FIELD_NAME] = self.id
+        return request
+
 
 class Copil(models.Model):
-    id=models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     nume = models.CharField(max_length=26)
     prenume = models.CharField(max_length=26)
-    coliziuni_obiecte=models.IntegerField()
-    izbituri_sol=models.IntegerField()
-    contact_animale=models.IntegerField()
     ultima_locatie=models.CharField(max_length=25)
-
+    coliziuni_obiecte = models.IntegerField()
+    izbituri_sol = models.IntegerField()
+    contact_animale = models.IntegerField()
 
     class Meta:
-        db_table= 'COPIL'
+        db_table = 'COPIL'
+
 
 class Device(models.Model):
-    id=models.IntegerField(primary_key=True)
-    id_copil=models.IntegerField()
-    longitudine=models.FloatField()
-    latitudine=models.FloatField()
+    id = models.IntegerField(primary_key=True)
+    id_copil = models.IntegerField()
+    longitudine = models.FloatField()
+    latitudine = models.FloatField()
 
     class Meta:
-        db_table= 'DEVICE'
+        db_table = 'DEVICE'
+
 
 class Legatura(models.Model):
-    id_parinte=models.IntegerField()
-    id_copil=models.IntegerField()
+    id_parinte = models.IntegerField()
+    id_copil = models.IntegerField()
 
     class Meta:
-        db_table= 'LEGATURA'
+        db_table = 'LEGATURA'
+
 
 class Zona_Aprobata(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -61,33 +71,33 @@ class Zona_Aprobata(models.Model):
     latitudine1 = models.FloatField()
     longitudine2 = models.FloatField()
     latitudine2 = models.FloatField()
-    denumire=models.CharField(max_length=30)
-    descriere=models.CharField(max_length=100)
+    denumire = models.CharField(max_length=30)
+    descriere = models.CharField(max_length=100)
 
     class Meta:
-        db_table= 'ZONA_APROBATA'
+        db_table = 'ZONA_APROBATA'
+
 
 class Zona_Risc(models.Model):
-    id=models.IntegerField(primary_key=True)
-    grad_pericol=models.IntegerField()
-    tip_pericol=models.CharField(max_length=30)
+    id = models.IntegerField(primary_key=True)
+    grad_pericol = models.IntegerField()
+    tip_pericol = models.CharField(max_length=30)
     longitudine1 = models.FloatField()
     latitudine1 = models.FloatField()
     longitudine2 = models.FloatField()
     latitudine2 = models.FloatField()
 
     class Meta:
-        db_table='ZONA_RISC'
+        db_table = 'ZONA_RISC'
+
 
 class Notificari(models.Model):
-    id=models.IntegerField(primary_key=True)
-    titlu=models.CharField(max_length=20)
-    continut=models.CharField(max_length=100)
-    ora=models.DateTimeField()
-    culoare=models.CharField(max_length=15)
-    id_parinte=models.IntegerField()
+    id = models.IntegerField(primary_key=True)
+    titlu = models.CharField(max_length=20)
+    continut = models.CharField(max_length=100)
+    ora = models.DateTimeField()
+    culoare = models.CharField(max_length=15)
+    id_parinte = models.IntegerField()
 
     class Meta:
-        db_table='NOTIFICARI'
-
-
+        db_table = 'NOTIFICARI'
