@@ -1,9 +1,8 @@
+from settings import SESSION_USER_ID_FIELD_NAME
+
 from django.contrib.sessions import models
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-
-from settings import SESSION_USER_ID_FIELD_NAME
-from kimo import views
 
 from kimo.models import Utilizator
 

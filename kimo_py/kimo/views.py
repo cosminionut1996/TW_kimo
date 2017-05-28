@@ -1,5 +1,7 @@
 from django.db import connection
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.views.generic import View
 
 from kimo.models import Utilizator, Copil
@@ -19,8 +21,11 @@ class Index(View):
 
 class Login(View):
     def get(self, request):
+        if request.GET.get('log_out'):
+            if request.session.get(SESSION_USER_ID_FIELD_NAME):
+                del request.session[SESSION_USER_ID_FIELD_NAME]
         context = {}
-        if request.session.get('utilizator_id', None):
+        if request.session.get(SESSION_USER_ID_FIELD_NAME, None):
             context = {'error': 'You are already logged in.'}
         return render(request, 'kimo/login.html', context=context)
 
@@ -30,13 +35,12 @@ class Login(View):
 
         utilizator = Utilizator.authenticate(username, password)
         if utilizator:
-            request = utilizator.login(request)
-            return
-
-        return render(request, 'kimo/profile.html', context={
-            'error': request.session.get(SESSION_USER_ID_FIELD_NAME, None)
-        })
-        # return render(request, 'kimo/login.html')
+            utilizator.login(request)
+            return HttpResponseRedirect(reverse('kimo:profile'))
+        else:
+            return render(request, 'kimo/login.html', context={
+                "error": "Invalid username / password."
+            })
 
 
 class Register(View):
@@ -104,7 +108,8 @@ class Profile(View):
             l.append({'nume': linie.nume + ' ' + linie.prenume, 'locatie': linie.ultima_locatie})
             print(linie.nume, linie.prenume, linie.ultima_locatie)
         return render(request, 'kimo/profile.html', context={
-            "result": l})
+            "result": l
+        })
 
     @logged_in_only
     def post(self, request):

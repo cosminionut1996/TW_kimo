@@ -29,7 +29,10 @@ class Utilizator(models.Model):
 
     def login(self, request):
         request.session[SESSION_USER_ID_FIELD_NAME] = self.id
-        return request
+
+    def logout(self, request):
+        if request.session:
+            del request.session
 
 
 class Copil(models.Model):
