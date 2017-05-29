@@ -9,14 +9,34 @@
 {% block main %}
 <div id="googleMap" style="width:100%;height:90%;"></div>
 
+<link href="{% static 'css/myStyle.css' %}" rel="stylesheet">
+
+<div id="divform" class="form" style="visibility:hidden">
+
+<form>
+    <strong>Name:</strong>
+  <input type="text" name="name" id="name">
+    <strong>Description:</strong>
+  <input type="text" name="desciption" id="description">
+  <input type="text" name="jsonText" id="json" style="display:none;">
+    <button id ="submitbt" type="button"><strong>SUBMIT</strong></button>
+</form>
+
+</div>
+
+
 <script src="{% static 'js/danger.js' %}"></script>
 
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAljMB9ASc4kwqDG0UeBfABhiEsGdj6zYc&libraries=drawing&callback=dangerMap"></script>
+
+
 {% endblock %}
 
 {% block footer %}
 <link href="{% static 'css/slider.css' %}" rel="stylesheet">
 <script src="{% static 'scripts/crud_insert_slider.js' %}"></script>
 <link href="{% static 'css/background.css' %}" rel="stylesheet">
+
 {% endblock %}
 
