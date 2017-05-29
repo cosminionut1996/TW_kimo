@@ -11,6 +11,7 @@ class Utilizator(models.Model):
     prenume = models.CharField(max_length=26)
     subscriptie = models.CharField(max_length=26)
     adresa = models.CharField(max_length=128)
+    email = models.CharField(max_length=128)
     localitate = models.CharField(max_length=20)
     telefon = models.CharField(max_length=26)
     username = models.CharField(max_length=26, unique=True)

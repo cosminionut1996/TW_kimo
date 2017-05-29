@@ -103,11 +103,22 @@ class Profile(View):
     def get(self, request):
         idc = request.session.get(SESSION_USER_ID_FIELD_NAME)
         l = list()
-        for linie in Copil.objects.raw(
-                'SELECT * FROM Copil c JOIN LEGATURA l on l.id_copil=c.id where l.id_parinte={}'.format(idc)):
-            l.append({'nume': linie.nume + ' ' + linie.prenume, 'locatie': linie.ultima_locatie})
+        n_l = list()
+        nr=0
+        for linie in Copil.objects.raw( 'SELECT * FROM Copil c JOIN LEGATURA l on l.id_copil=c.id join utilizator p on p.id=l.id_parinte where l.id_parinte={}'.format(idc)):
+            l.append({'nume': linie.nume + ' ' + linie.prenume,
+                      'locatie': linie.ultima_locatie})
+            nr+=1
+        linie = Utilizator.objects.get(id=idc)
+        print(linie.nume, linie.prenume, linie.email, linie.adresa, linie.localitate, nr)
+        n_l = {'nume': linie.nume + ' ' + linie.prenume,
+                   'email': linie.email,
+                   'adresa': linie.adresa + ' / ' + linie.localitate
+                     }
         return render(request, 'kimo/profile.html', context={
-            "result": l
+            "result": l,
+            "parinte": n_l,
+            "numar": nr
         })
 
     @logged_in_only

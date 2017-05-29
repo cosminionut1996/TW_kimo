@@ -11,13 +11,13 @@
         <a href="#">
             <img src="https://scontent-otp1-1.xx.fbcdn.net/v/t1.0-9/16195304_1809855595944866_1526919402083620382_n.jpg?oh=297e81cc9702f2b2783de37f9ac9a076&oe=597BDAAA" />
         </a>
-        <h1>Stefan Gradinaru</h1>
-        <h2>2 Copii</h2>
+        <h1> {{ parinte.nume }} </h1>
+        <h2> {{ numar }} Copii</h2>
     </header>
 
     <div class="profile-bio">
-        <p>google@stefan.gradinaru</p>
-        <p>Club Birzar @ Pragesti</p>
+        <p> {{ parinte.email }}</p>
+        <p> {{ parinte.adresa }}</p>
         <a class="button" href="{% url 'account_settings:change_password' %}">
             Change password</a>
     </div>
