@@ -8,10 +8,19 @@
 
 {% block main %}
 <div id="googleMap" style="width:100%;height:90%;"></div>
-
 <script src="{% static 'js/map.js' %}"></script>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAljMB9ASc4kwqDG0UeBfABhiEsGdj6zYc&libraries=drawing&callback=myMap"></script>
+
+<div id="informatii" style="display: none;">
+    {% for zona in zone %}
+    <div id="zona{{ zona.id }}">
+        <div id="name">{{ zona.name }}</div>
+        <div id="description">{{ zona.description }}</div>
+        <div id="coordinates">{{ zona.coordinates | safe }}</div>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
 
 {% block footer %}

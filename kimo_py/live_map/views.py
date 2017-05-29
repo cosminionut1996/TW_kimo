@@ -10,10 +10,9 @@ import json
 class Map(View):
     @logged_in_only
     def get(self, request):
-        zones = ZonaRisc.objects.filter()
-        for zone in zones:
-            print(zone.name, zone.description, zone.coordinates)
-        return render(request, 'live_map/google_map.html')
+        return render(request, 'live_map/google_map.html', context={
+            'zone': ZonaRisc.objects.filter()
+        })
 
 
 class Danger(View):
