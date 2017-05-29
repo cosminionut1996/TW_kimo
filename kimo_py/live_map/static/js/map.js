@@ -74,6 +74,23 @@ var mapProp= {
 var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 var lat=new google.maps.LatLng(47.158374,27.601104);
 
+//var informatii=new google.maps.Map(document.getElementById("informatii"),mapProp);
+//var informatii = document.getElementById("name").value;
+//console.log(informatii);
+//var MyDiv1 = document.getElementById("informatii");
+
+
+$(document).ready(function(){
+  $("#informatii").each(
+    function() {
+      var name = $(this).find("#name").text();
+      var description = $(this).find("#description").text();
+      var coordinates = $(this).find("#coordinates").text();
+      console.log(name + description + coordinates);
+    }
+  );
+});
+
 
 var marker= new Marker(47.158374,27.601104, "test2", "copil2");
 var marker2 = new Marker(48.158374,28.601104, "test3", "copil3");
