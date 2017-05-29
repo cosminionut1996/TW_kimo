@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.views.generic import View
+from settings import SESSION_USER_ID_FIELD_NAME
 
 from kimo.models import Notificari
 
 
 class Notifier(View):
     def get(self, request):
-        notificare=Notificari.objects.filter(id_parinte='10055')
+        id=request.session.get(SESSION_USER_ID_FIELD_NAME)
+        print(id)
+        notificare=Notificari.objects.filter(id_parinte=id)
         l=list()
         for linie in notificare:
             l.append({'titlu': linie.titlu, 'continut': linie.continut, 'culoare':linie.culoare})

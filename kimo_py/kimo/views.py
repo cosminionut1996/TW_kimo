@@ -101,12 +101,11 @@ class Profile(View):
 
     @logged_in_only
     def get(self, request):
-        idp = 10055
+        idc = request.session.get(SESSION_USER_ID_FIELD_NAME)
         l = list()
         for linie in Copil.objects.raw(
-                'SELECT * FROM Copil c JOIN LEGATURA l on l.id_copil=c.id where l.id_parinte={}'.format(idp)):
+                'SELECT * FROM Copil c JOIN LEGATURA l on l.id_copil=c.id where l.id_parinte={}'.format(idc)):
             l.append({'nume': linie.nume + ' ' + linie.prenume, 'locatie': linie.ultima_locatie})
-            print(linie.nume, linie.prenume, linie.ultima_locatie)
         return render(request, 'kimo/profile.html', context={
             "result": l
         })
@@ -114,3 +113,4 @@ class Profile(View):
     @logged_in_only
     def post(self, request):
         return render(request, 'kimo/profile.html')
+
