@@ -15,9 +15,9 @@
 <div id="informatii" style="display: none;">
     {% for zona in zone %}
     <div id="zona{{ zona.id }}">
-        <div id="name">{{ zona.name }}</div>
-        <div id="description">{{ zona.description }}</div>
-        <div id="coordinates">{{ zona.coordinates | safe }}</div>
+        <div class="z-name">{{ zona.name }}</div>
+        <div class="z-description">{{ zona.description }}</div>
+        <div class="z-coordinates">{{ zona.coordinates | safe }}</div>
     </div>
     {% endfor %}
 </div>

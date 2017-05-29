@@ -81,11 +81,12 @@ var lat=new google.maps.LatLng(47.158374,27.601104);
 
 
 $(document).ready(function(){
-  $("#informatii").each(
+console.log($("#informatii").size());
+  $("#informatii > div").each(
     function() {
-      var name = $(this).find("#name").text();
-      var description = $(this).find("#description").text();
-      var coordinates = $(this).find("#coordinates").text();
+      var name = $(this).find(".z-name").text();
+      var description = $(this).find(".z-description").text();
+      var coordinates = $(this).find(".z-coordinates").text();
       console.log(name + description + coordinates);
     }
   );
