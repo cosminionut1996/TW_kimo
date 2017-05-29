@@ -13,13 +13,14 @@
 
 <div id="divform" class="form" style="visibility:hidden">
 
-<form>
+<form action="{% url 'live_map:danger' %}" method="POST">
+    {% csrf_token %}
     <strong>Name:</strong>
-  <input type="text" name="name" id="name">
+    <input type="text" name="name" id="name">
     <strong>Description:</strong>
-  <input type="text" name="desciption" id="description">
-  <input type="text" name="jsonText" id="json" style="display:none;">
-    <button id ="submitbt" type="button"><strong>SUBMIT</strong></button>
+    <input type="text" name="desciption" id="description">
+    <input type="text" name="jsonText" id="json" style="display:none;">
+    <input type="submit" name="danger-submit" id="submitbt" value="Add danger zone">
 </form>
 
 </div>

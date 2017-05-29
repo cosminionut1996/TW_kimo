@@ -66,7 +66,7 @@ class Legatura(models.Model):
         db_table = 'LEGATURA'
 
 
-class Zona_Aprobata(models.Model):
+class ZonaAprobata(models.Model):
     id = models.IntegerField(primary_key=True)
     id_parinte = models.IntegerField()
     id_copil = models.IntegerField()
@@ -81,7 +81,7 @@ class Zona_Aprobata(models.Model):
         db_table = 'ZONA_APROBATA'
 
 
-class Zona_Risc(models.Model):
+class ZonaRisc(models.Model):
     id = models.IntegerField(primary_key=True)
     grad_pericol = models.IntegerField()
     tip_pericol = models.CharField(max_length=30)
