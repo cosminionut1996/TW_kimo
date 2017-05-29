@@ -83,12 +83,9 @@ class ZonaAprobata(models.Model):
 
 class ZonaRisc(models.Model):
     id = models.IntegerField(primary_key=True)
-    grad_pericol = models.IntegerField()
-    tip_pericol = models.CharField(max_length=30)
-    longitudine1 = models.FloatField()
-    latitudine1 = models.FloatField()
-    longitudine2 = models.FloatField()
-    latitudine2 = models.FloatField()
+    name = models.CharField(max_length=32)
+    description = models.CharField(max_length=512)
+    coordinates = models.CharField(max_length=1024)
 
     class Meta:
         db_table = 'ZONA_RISC'
