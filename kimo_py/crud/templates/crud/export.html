@@ -5,11 +5,6 @@
     {% csrf_token %}
     <div class="row">
         <div class="col-md-4">
-            <label>Numele tabelei exportate</label>
-            <input autocomplete="off" class="form-control"
-                   id="insert-nume" name="export"
-                   placeholder="Nume tabela" type="text">
-            <br>
             <button type="submit" onclick="show_loader()"
                     class="btn btn-warning btn-block">EXPORT</button>
         </div>

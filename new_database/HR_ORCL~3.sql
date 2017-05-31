@@ -1,4 +1,7 @@
-DECLARE
+create or replace PACKAGE body exportare_tabela IS
+
+     PROCEDURE export_table
+     is
   out_File  UTL_FILE.FILE_TYPE;
   result varchar2(10000);
   CURSOR get_objects is
@@ -16,3 +19,5 @@ BEGIN
     end loop;
   
 END;
+END exportare_tabela;
+/

@@ -1,0 +1,21 @@
+{% extends 'crud.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<form method="POST" action="{% url 'crud:num_children' %}">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">
+            <label>Username parinte</label>
+            <input autocomplete="on" class="form-control"
+                   id="insert-nume" name="username"
+                   placeholder="username" type="text">
+            <br>
+            <button type="submit" onclick="show_loader()"
+                    class="btn btn-warning btn-block">Afiseaza numar copii</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

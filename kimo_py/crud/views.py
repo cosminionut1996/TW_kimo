@@ -3,6 +3,7 @@ from django.views.generic import View
 from django.core.paginator import Paginator, EmptyPage
 
 from kimo.models import Utilizator
+import cx_Oracle
 
 
 class CRUD(View):
@@ -85,6 +86,35 @@ class CrudRead(View):
         return self.select_from_table(request)
 
 
+class CrudChildren(View):
+
+    def __init__(self):
+        super().__init__()
+        self.connection = cx_Oracle.connect('HR/hr@localhost:1521/xe')
+        self.cursor = self.connection.cursor()
+
+    def __del__(self):
+        self.cursor.close()
+        self.connection.close()
+
+    def get(self, request):
+        return render(request, 'crud/num_children.html')
+
+    def post(self, request):
+        try:
+            self.cursor.execute("SELECT * FROM num_questions WHERE username = '{}'".format(request.POST.get('username')))
+            for x in self.cursor:
+                numar_copii = x[1]
+                break
+            return render(request, 'crud/num_children.html', context={
+                "error": str(numar_copii) + " copii."
+            })
+        except:
+            return render(request, 'crud/num_children.html', context={
+                "error": "Nu exista"
+            })
+
+
 class CrudUpdate(View):
     def get(self, request):
         return render(request, 'crud/update.html')
@@ -129,12 +159,23 @@ class CrudDelete(View):
 
 
 class ExportTable(View):
+
+    def __init__(self):
+        super().__init__()
+        self.connection = cx_Oracle.connect('HR/hr@localhost:1521/xe')
+        self.cursor = self.connection.cursor()
+
+    def __del__(self):
+        self.cursor.close()
+        self.connection.close()
+
     def get(self, request):
         return render(request, 'crud/export.html')
 
     def post(self, request):
-        export_name = request.POST.get("export")
-        print(export_name)
+
+        self.cursor.callproc('exportare_tabela.export_table')
+
         return render(request, 'crud/export.html', context={
-            'error': export_name
+            'error': "Executat"
         })

@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^delete', views.CrudDelete.as_view(), name='delete'),
     url(r'^read', views.CrudRead.as_view(), name='read'),
     url(r'^export', views.ExportTable.as_view(), name='export'),
+    url(r'^children', views.CrudChildren.as_view(), name='num_children'),
 ]
