@@ -84,6 +84,7 @@ TEMPLATES = [
 
             'libraries':{
                 'map_custom_filters': 'live_map.filters.map_custom_filters',
+                'profile_custom_tags': 'kimo.templates.tags.custom_tags',
             }
         },
     },

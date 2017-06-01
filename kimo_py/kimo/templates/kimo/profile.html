@@ -2,22 +2,24 @@
 
 {% load static %}
 
+{% load profile_custom_tags %}
+
 
 {% block submenu %}
 <link href="{% static 'css/profile_div.css' %}" rel="stylesheet">
 <aside class="profile-card">
-    {% get_profile as profile %}
+    {% get_profile request.session.utilizator_id as utilizator %}
     <header>
         <a href="#">
             <img src="https://scontent-otp1-1.xx.fbcdn.net/v/t1.0-9/16195304_1809855595944866_1526919402083620382_n.jpg?oh=297e81cc9702f2b2783de37f9ac9a076&oe=597BDAAA" />
         </a>
-        <h1> {{ parinte.nume }} </h1>
-        <h2> {{ numar }} Copii</h2>
+        <h1> {{ utilizator.nume }} {{ utilizator.prenume }}</h1>
+        <h2> {{ utilizator.numar_copii }} Copii</h2>
     </header>
 
     <div class="profile-bio">
-        <p> {{ parinte.email }}</p>
-        <p> {{ parinte.adresa }}</p>
+        <p> {{ utilizator.email }}</p>
+        <p> {{ utilizator.adresa }} / {{ utilizator.localitate }} </p>
         <a class="button" href="{% url 'account_settings:change_password' %}">
             Change password</a>
     </div>

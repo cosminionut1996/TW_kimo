@@ -110,7 +110,6 @@ class Profile(View):
                       'locatie': linie.ultima_locatie})
             nr+=1
         linie = Utilizator.objects.get(id=idc)
-        print(linie.nume, linie.prenume, linie.email, linie.adresa, linie.localitate, nr)
         n_l = {'nume': linie.nume + ' ' + linie.prenume,
                    'email': linie.email,
                    'adresa': linie.adresa + ' / ' + linie.localitate
