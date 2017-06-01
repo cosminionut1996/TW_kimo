@@ -81,6 +81,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
+            'libraries':{
+                'map_custom_filters': 'live_map.filters.map_custom_filters',
+            }
         },
     },
 ]
@@ -97,8 +101,7 @@ DATABASES = {
         'NAME': 'XE',
         'USER': 'HR',
         'PASSWORD': 'hr',
-        #'HOST': '192.168.0.103',
-        'HOST': 'localhost',
+        'HOST': '192.168.0.103',
         'PORT': 1521,
     }
 }
