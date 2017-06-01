@@ -93,29 +93,46 @@ $(document).ready(function(){
 console.log($("#informatii").size());
   $("#informatii > div").each(
     function() {
-    console.log("in jquery");
+    //console.log("in jquery");
       var name = $(this).find(".z-name").text();
       var description = $(this).find(".z-description").text();
-      var coordinates = $(this).find(".z-coordinates").text();
-      console.log(name + description + coordinates);
+      var coordinates3 = $(this).find(".z-coordinates").text();
+      var coordinates2 = coordinates3.replace(/[\[\]\\\/]/gi, '');
+      var coordinates3 = coordinates2.replace(new RegExp(", {", "g"),'@{');
+      var coordinates2 = coordinates3.replace(/'/g,'"');
+      //console.log(coordinates2);
+      var array = coordinates2.split("@");
+      //console.log(name + description + coordinates);
+      //console.log(coordinates3+ " aici ne uitam");
+      var coordinates = new Array();
+      for ( k=0; k<array.length;k++){
+            console.log(array[k] + "   "+ k);
+            var obj=JSON.parse(array[k]);
+            coordinates.push(obj);
+        }
+
+     // console.log(coordinates3);
       var polygon=new Polygon();
       polygon.add_points(coordinates, name, description);
-      console.log(polygon.get_description()+"   "+ polygon.get_coordinates());
+      //console.log(polygon.get_description()+"   "+ polygon.get_coordinates());
       polygons.add_area(polygon);
+      console.log("gata iteratia");
     }
   );
-  var list2 = polygons.get_list();
-  console.log(list2.length+ "------------------------");
-  console.log(list2[0].get_coordinates()  +  "lista");
-  var list_puncte=list2[0].get_coordinates() ;
+
+  var listp = polygons.get_list();
+  console.log(listp);
   //console.log(list_puncte);
  // for (k =0; k<list_puncte.length;k ++)
    //     console.log(list_puncte[k]);
 
-  for ( l=0; l< list2.length; l++)
+
+
+
+  for ( l=0; l< listp.length; l++)
     {
           var shape = new google.maps.Polygon({
-          paths: list2[l].get_coordinates(),
+          paths: listp[l].get_coordinates(),
           strokeColor: '#FF0000',
           strokeOpacity: 0.8,
           strokeWeight: 2,
@@ -124,6 +141,7 @@ console.log($("#informatii").size());
           title:'adasdas',
           content:'dasdasdas'
         });
+        console.log("am trecut pe aici");
         var infoWindow=new google.maps.InfoWindow({ content: 'sadasdas',
 	                                               title: 'dsadasd',
 	                                               //aici se pun coordonatele
@@ -135,6 +153,7 @@ console.log($("#informatii").size());
         shape.setMap(map);
 
        }
+
 });
 
 
@@ -151,10 +170,11 @@ p1.add_points([
         ],"zona1","pericol");
  polygons.add_area(p1);
 
- var list2=polygons.get_list();
- for ( j=0; j<list2.length;j++)
-    console.log(list2[j].get_coordinates());
-console.log(list2[0].get_coordinates() + "aici");
+
+
+ //for ( j=0; j<list2.length;j++)
+ //   console.log(list2[j].get_coordinates());
+//console.log(list2[0].get_coordinates() + "aici");
 
 markers.add_marker(marker);
 markers.add_marker(marker2);
@@ -164,7 +184,43 @@ var list = markers.get_list();
         addMarker(map, list[i].googleLatLng, list[i].title, list[i].content);
 
 //addShape(map);
+/*
+var string = "[{lat: 47.16707628945532 , lng: 27.611045837402344},{lat: 47.15190231842864, lng: 27.611560821533203},{lat: 47.16334156019606, lng: 27.630271911621094}] ";
+var array = string.split("},");
+if(array.isArray==1)
+    console.log("este array1");
+alert(array[0]);*/
 
+var list2= polygons.get_list();
+console.log("ala bun");
+console.log(list2);
+console.log("ala bun");
+var arr = new Array();
+arr.push("buna");
+for ( l=0; l< list2.length; l++)
+    {
+          var shape = new google.maps.Polygon({
+          paths: list2[l].get_coordinates(),
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          title:'adasdas',
+          content:'dasdasdas'
+        });
+        console.log("am trecut pe aici");
+        var infoWindow=new google.maps.InfoWindow({ content: 'sadasdas',
+	                                               title: 'dsadasd',
+	                                               //aici se pun coordonatele
+	                                               });
+
+        google.maps.event.addListener(shape, "click", function(){
+		infoWindow.open(map);
+	});
+        shape.setMap(map);
+
+       }
 
 
 
