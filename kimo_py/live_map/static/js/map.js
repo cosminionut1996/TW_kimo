@@ -34,15 +34,24 @@ class Polygon {
 
      constructor(){
      this.pointList= new Array();
+     this.name='';
+     this.description='';
 
      }
-     add_points(latlong){
+     add_points(latlong, name2 , desc){
      this.pointList=latlong;
+     this.name=name2;
+     this.description=desc;
      }
-     get_list(){
+     get_coordinates(){
      return this.pointList;
      }
-
+     get_name(){
+     return this.name;
+     }
+     get_description(){
+     return this.description;
+     }
 
 }
 
@@ -84,12 +93,48 @@ $(document).ready(function(){
 console.log($("#informatii").size());
   $("#informatii > div").each(
     function() {
+    console.log("in jquery");
       var name = $(this).find(".z-name").text();
       var description = $(this).find(".z-description").text();
       var coordinates = $(this).find(".z-coordinates").text();
       console.log(name + description + coordinates);
+      var polygon=new Polygon();
+      polygon.add_points(coordinates, name, description);
+      console.log(polygon.get_description()+"   "+ polygon.get_coordinates());
+      polygons.add_area(polygon);
     }
   );
+  var list2 = polygons.get_list();
+  console.log(list2.length+ "------------------------");
+  console.log(list2[0].get_coordinates()  +  "lista");
+  var list_puncte=list2[0].get_coordinates() ;
+  //console.log(list_puncte);
+ // for (k =0; k<list_puncte.length;k ++)
+   //     console.log(list_puncte[k]);
+
+  for ( l=0; l< list2.length; l++)
+    {
+          var shape = new google.maps.Polygon({
+          paths: list2[l].get_coordinates(),
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          title:'adasdas',
+          content:'dasdasdas'
+        });
+        var infoWindow=new google.maps.InfoWindow({ content: 'sadasdas',
+	                                               title: 'dsadasd',
+	                                               //aici se pun coordonatele
+	                                               });
+
+        google.maps.event.addListener(shape, "click", function(){
+		infoWindow.open(map);
+	});
+        shape.setMap(map);
+
+       }
 });
 
 
@@ -103,12 +148,14 @@ p1.add_points([
           {lat: 47.16707628945532 , lng: 27.611045837402344},
           {lat: 47.15190231842864, lng: 27.611560821533203},
           {lat: 47.16334156019606, lng: 27.630271911621094}
-        ]);
+        ],"zona1","pericol");
  polygons.add_area(p1);
 
  var list2=polygons.get_list();
+ for ( j=0; j<list2.length;j++)
+    console.log(list2[j].get_coordinates());
+console.log(list2[0].get_coordinates() + "aici");
 
-console.log(list2.length);
 markers.add_marker(marker);
 markers.add_marker(marker2);
 var list = markers.get_list();
@@ -118,32 +165,7 @@ var list = markers.get_list();
 
 //addShape(map);
 
-for( j=0; j<list2.length; j++)
-    {
-        var shape = new google.maps.Polygon({
-          paths: list2[j].get_list(),
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35,
-          title:'adasdas',
-          content:'dasdasdas'
-        });
-        var coord=0;
-        var puncte = list2[j].get_list();
 
-        var infoWindow=new google.maps.InfoWindow({ content: 'sadasdas',
-	                                               title: 'dsadasd',
-	                                               //aici se pun coordonatele
-	                                               });
-
-        google.maps.event.addListener(shape, "click", function(){
-		infoWindow.open(map);
-	});
-        shape.setMap(map);
-        console.log('asdasdas');
-    }
 
 
 }
