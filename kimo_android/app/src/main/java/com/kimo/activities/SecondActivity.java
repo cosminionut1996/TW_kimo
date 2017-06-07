@@ -24,7 +24,7 @@ public class SecondActivity extends AppCompatActivity  {
     TextView latitudine;
     TextView longitudine;
     TextView altitudine;
-    Button button;
+    Button button,picture;
     LocationManager locationManager;
     LocationListener locationListener;
     private String cod;
@@ -49,13 +49,15 @@ public class SecondActivity extends AppCompatActivity  {
         longitudine = (TextView) findViewById(R.id.textView2);
         altitudine = (TextView) findViewById(R.id.textView3);
         button = (Button) findViewById(R.id.button3);
+        picture = (Button) findViewById(R.id.button7);
 
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent picture=new Intent(getApplicationContext(),Picture.class);
+                System.out.println("Cum asa? asa asa");
                 startActivity(picture);
             }
         });

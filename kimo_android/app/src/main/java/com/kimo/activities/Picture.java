@@ -5,11 +5,14 @@ import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.demo.R;
+
+import java.io.ByteArrayOutputStream;
 
 public class Picture extends AppCompatActivity {
 
@@ -38,5 +41,10 @@ public class Picture extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bitmap=(Bitmap)data.getExtras().get("data");
         imageView.setImageBitmap(bitmap);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+        String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        System.out.println(encoded);
     }
 }
