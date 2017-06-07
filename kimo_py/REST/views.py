@@ -15,7 +15,6 @@ class RequestPictureView(APIView):
 
 class CheckChildren(APIView):
     def get(self, request, format=None):
-        
         return Response("Done", status=status.HTTP_400_BAD_REQUEST)
 
 

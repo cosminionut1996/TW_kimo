@@ -61,6 +61,7 @@ class Device(models.Model):
 
 
 class Legatura(models.Model):
+    id = models.IntegerField(primary_key=True)
     id_parinte = models.IntegerField()
     id_copil = models.IntegerField()
 

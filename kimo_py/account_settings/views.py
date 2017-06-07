@@ -63,8 +63,10 @@ class Token(View):
             del request.session['child_firstname']
             del request.session['child_lastname']
             token = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
-            c = Copil.objects.create(prenume=firstname, nume=lastname)
+            Copil.objects.create(prenume=firstname, nume=lastname)
+            c = Copil.objects.filter(prenume=firstname, nume=lastname)[0]
             Device.objects.create(id_copil=c.id, token=token)
+            Legatura.objects.create(id_copil=c.id, id_parinte=request.session[SESSION_USER_ID_FIELD_NAME])
 
             return render(request, 'account_settings/token.html', context={
                 'childname': firstname,
