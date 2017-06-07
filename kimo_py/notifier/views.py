@@ -15,7 +15,10 @@ class Notifier(View):
         notificare=Notificari.objects.filter(id_parinte=id)
         l=list()
         for linie in notificare:
-            l.append({'titlu': linie.titlu, 'continut': linie.continut, 'culoare':linie.culoare})
+            l.append({'titlu': linie.titlu,
+                      'continut': linie.continut,
+                      'culoare':linie.culoare})
+
         return render(request, 'notifier/notifier.html', context={
-        "result": l
+            "result": l
         })

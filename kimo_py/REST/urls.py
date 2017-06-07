@@ -13,15 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import url
 
+from . import views
+
+app_name = 'REST'
 urlpatterns = [
-    url(r'^', include('kimo.urls')),
-    url(r'^live_map/', include('live_map.urls')),
-    url(r'^crud/', include('crud.urls')),
-    url(r'^notifier/', include('notifier.urls')),
-    url(r'^account_settings/', include('account_settings.urls')),
-    url(r'^statistics/', include('statistics.urls')),
-    url(r'^signals/', include('signals.urls')),
-    url(r'^REST/', include('REST.urls')),
+    url(r'^token/(?P<token>[0-9A-Za-z]{6})$', views.LocationView.as_view(), name='location'),
 ]

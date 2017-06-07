@@ -40,8 +40,8 @@ class Token(View):
             del request.session['child_firstname']
             del request.session['child_lastname']
             token = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
-            Copil.objects.create(prenume=firstname, nume=lastname)
-            Device.objects.create(id_copil=c.id,token=token)
+            c = Copil.objects.create(prenume=firstname, nume=lastname)
+            Device.objects.create(id_copil=c.id, token=token)
 
             return render(request, 'account_settings/token.html', context={
                 'childname': firstname,

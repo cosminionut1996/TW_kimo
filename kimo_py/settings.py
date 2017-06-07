@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'account_settings',
     'statistics',
     'signals',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
