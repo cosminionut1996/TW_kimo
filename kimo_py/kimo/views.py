@@ -142,6 +142,7 @@ class Profile(View):
 
         linie = Utilizator.objects.get(id=idc)
         n_l = {
+            'id': idc,
             'nume': linie.nume + ' ' + linie.prenume,
             'email': linie.email,
             'adresa': linie.adresa + ' / ' + linie.localitate

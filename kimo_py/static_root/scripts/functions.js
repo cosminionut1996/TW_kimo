@@ -68,3 +68,4 @@ $("#myonoffswitch").mousedown(function(e) {
 $("#myonoffswitch1").mousedown(function(e) {
     $("#p2").css("opacity", 0.4);
 })
+

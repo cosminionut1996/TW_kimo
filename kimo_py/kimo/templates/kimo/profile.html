@@ -10,9 +10,26 @@
 <aside class="profile-card">
     {% get_profile request.session.utilizator_id as utilizator %}
     <header>
+        {% if utilizator.nume == "Gradinaru" %}
         <a href="#">
             <img src="https://scontent-otp1-1.xx.fbcdn.net/v/t1.0-9/16195304_1809855595944866_1526919402083620382_n.jpg?oh=297e81cc9702f2b2783de37f9ac9a076&oe=597BDAAA" />
         </a>
+        {% endif %}
+
+        {% if utilizator.nume == "Paduraru" %}
+        <a href="#">
+            <img src="https://s3.postimg.org/vlu85mu03/17498742_1368241536580118_8218449161224327428_n.jpg" />
+        </a>
+        {% endif %}
+
+        {% if utilizator.nume != "Paduraru" and utilizator.nume != "Gradinaru" %}
+        <a href="#">
+            <img src="https://s16.postimg.org/wqscnylo5/247963-blank.jpg" />
+        </a>
+        {% endif %}
+
+
+
         <h1> {{ utilizator.nume }} {{ utilizator.prenume }}</h1>
         <h2> {{ utilizator.numar_copii }} Copii</h2>
     </header>
