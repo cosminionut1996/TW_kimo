@@ -87,7 +87,7 @@ class ZonaRisc(models.Model):
     name = models.CharField(max_length=32)
     description = models.CharField(max_length=512)
     coordinates = models.CharField(max_length=1024)
-
+    id_utilizator = models.IntegerField()
     class Meta:
         db_table = 'ZONA_RISC'
 
