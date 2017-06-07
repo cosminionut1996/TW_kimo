@@ -131,26 +131,7 @@ console.log($("#informatii").size());
 
   for ( l=0; l< listp.length; l++)
     {
-          var shape = new google.maps.Polygon({
-          paths: listp[l].get_coordinates(),
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35,
-          title:'adasdas',
-          content:'dasdasdas'
-        });
-        console.log("am trecut pe aici");
-        var infoWindow=new google.maps.InfoWindow({ content: 'sadasdas',
-	                                               title: 'dsadasd',
-	                                               //aici se pun coordonatele
-	                                               });
-
-        google.maps.event.addListener(shape, "click", function(){
-		infoWindow.open(map);
-	});
-        shape.setMap(map);
+         addPolygon(map, listp[l].get_coordinates() ,listp[l].get_name(), listp[l].get_description() );
 
        }
 
@@ -172,9 +153,7 @@ p1.add_points([
 
 
 
- //for ( j=0; j<list2.length;j++)
- //   console.log(list2[j].get_coordinates());
-//console.log(list2[0].get_coordinates() + "aici");
+
 
 markers.add_marker(marker);
 markers.add_marker(marker2);
@@ -183,44 +162,8 @@ var list = markers.get_list();
  for (i = 0; i < list.length; i++)
         addMarker(map, list[i].googleLatLng, list[i].title, list[i].content);
 
-//addShape(map);
-/*
-var string = "[{lat: 47.16707628945532 , lng: 27.611045837402344},{lat: 47.15190231842864, lng: 27.611560821533203},{lat: 47.16334156019606, lng: 27.630271911621094}] ";
-var array = string.split("},");
-if(array.isArray==1)
-    console.log("este array1");
-alert(array[0]);*/
 
-var list2= polygons.get_list();
-console.log("ala bun");
-console.log(list2);
-console.log("ala bun");
-var arr = new Array();
-arr.push("buna");
-for ( l=0; l< list2.length; l++)
-    {
-          var shape = new google.maps.Polygon({
-          paths: list2[l].get_coordinates(),
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35,
-          title:'adasdas',
-          content:'dasdasdas'
-        });
-        console.log("am trecut pe aici");
-        var infoWindow=new google.maps.InfoWindow({ content: 'sadasdas',
-	                                               title: 'dsadasd',
-	                                               //aici se pun coordonatele
-	                                               });
 
-        google.maps.event.addListener(shape, "click", function(){
-		infoWindow.open(map);
-	});
-        shape.setMap(map);
-
-       }
 
 
 
@@ -246,38 +189,48 @@ animation:google.maps.Animation.DROP
 	});
 }
 
+function addPolygon(map, coordinates, title, content){
 
-
-
-
-
-function addShape(map){
-
-var drawingManager = new google.maps.drawing.DrawingManager({
-
-          drawingControl: true,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: [ 'polygon']
-          },
-          polygonOptions:{
-           fillColor: '#FF0000',
-           strokeWeight: 2,
-           strokeColor: '#FF0000',
-
-          }
+ var shape = new google.maps.Polygon({
+          paths: coordinates,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          title:'adasdas',
+          content:'dasdasdas'
         });
-       google.maps.event.addListener(drawingManager, 'overlaycomplete', function(polygon) {
-    var coordinatesArray = polygon.overlay.getPath().getArray();
-    polygon = new Polygon();
-    polygon.add_points(coordinatesArray);
-    for(i=0; i<coordinatesArray.length;i++)
-    {
-       console.log( coordinatesArray[i]+ '   ');
-    }
-    console.log(',')
-});
 
-        drawingManager.setMap(map);
+
+       // console.log(listp[l].get_description());
+        var c=coordinates;
+        var x= 0.0;
+        var y= 0.0;
+        for( j=0; j < c.length ; j++)
+                {
+                   x=c[j].lat +x;
+                   y=c[j].lng + y;
+                }
+
+        x=x/c.length;
+        y=y/c.length;
+
+        var infoWindow=new google.maps.InfoWindow({ content: content,
+	                                               title: title,
+	                                               position: new google.maps.LatLng(x,y)
+	                                               });
+
+        google.maps.event.addListener(shape, "click", function(){
+		infoWindow.open(map);
+		console.log("listener");
+	});
+        shape.setMap(map);
+
+
 
 }
+
+
+
+
