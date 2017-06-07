@@ -14,31 +14,32 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="41dp"
+        android:text="Latitudine:"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="100dp"
-        android:text="Latitudine:" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         style="@style/CustomText"
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
         android:text="Longitudine:"
         android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="22dp" />
 
     <TextView
         style="@style/CustomText"
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
         android:text="Altitudine:"
         android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginTop="31dp" />
+
 
     <Button
         android:id="@+id/button7"
@@ -48,4 +49,11 @@
         android:layout_alignStart="@+id/textView3"
         android:layout_marginBottom="68dp"
         android:text="Picture" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

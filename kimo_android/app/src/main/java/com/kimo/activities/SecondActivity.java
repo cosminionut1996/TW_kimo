@@ -2,6 +2,7 @@ package com.kimo.activities;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,16 +16,20 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.demo.R;
-import com.kimo.activities.MainActivity;
+import com.kimo.messenger.NetworkTask;
+import com.kimo.messenger.PostRequest;
 
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity  {
 
     TextView latitudine;
-    TextView longitutine;
+    TextView longitudine;
     TextView altitudine;
     Button button;
     LocationManager locationManager;
     LocationListener locationListener;
+    private String cod;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +37,20 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         Intent intent = getIntent();
-        String cod = intent.getStringExtra(MainActivity.MESSAGE);
+        cod = intent.getStringExtra(MainActivity.MESSAGE);
 
         ActionBar actionBar = getSupportActionBar();
         String s = new String("Transmitem locatia pentru: ");
         s += cod;
+        System.out.println(cod);
         actionBar.setTitle(s);
 
         latitudine = (TextView) findViewById(R.id.textView);
-        longitutine = (TextView) findViewById(R.id.textView2);
+        longitudine = (TextView) findViewById(R.id.textView2);
         altitudine = (TextView) findViewById(R.id.textView3);
-        button = (Button) findViewById(R.id.button7);
+        button = (Button) findViewById(R.id.button3);
+
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +65,10 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 latitudine.setText("Latitudine " + location.getLatitude());
-                longitutine.setText("Longitudine " + location.getLongitude());
+                longitudine.setText("Longitudine " + location.getLongitude());
                 altitudine.setText("Altitudine " + location.getAltitude());
+                PostRequest p = new PostRequest(location.getLatitude(), location.getLongitude(),cod);
+                new NetworkTask().execute(p);
             }
 
             @Override
@@ -93,8 +103,13 @@ public class SecondActivity extends AppCompatActivity {
                 configureButton();
 
         }
-
-
+        button.setBackgroundColor(Color.TRANSPARENT);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("am cazut");
+            }
+        });
 
     }
 
@@ -121,6 +136,8 @@ public class SecondActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        System.out.println();
+
     }
+
+
 }

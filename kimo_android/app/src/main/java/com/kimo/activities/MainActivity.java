@@ -68,32 +68,18 @@ public class MainActivity extends AppCompatActivity {
 
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                URL url = null;
-                try {
+
                     try{
                         String text = eText.getText().toString();
                         FileOutputStream fOut = openFileOutput("filename.txt",MODE_WORLD_READABLE);
                         OutputStreamWriter osw = new OutputStreamWriter(fOut);
                         osw.write(text);
-                        int len = text.length();
                         osw.flush();
                         osw.close();
+                        validat=true;
                     }catch(IOException ioe){
                     }
-                    String link=new String("http://192.168.0.103:10001/login?token=");
-                    link+=eText.getText().toString();
-                    url = new URL(link);
-                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                    urlConnection.setRequestMethod("GET");
-                    urlConnection.setUseCaches(false);
-                    urlConnection.setDoOutput(false);
-                    int res = urlConnection.getResponseCode();
-                    if(res==200)
-                        validat=true;
-                    System.out.println(res);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
             }
         });
 

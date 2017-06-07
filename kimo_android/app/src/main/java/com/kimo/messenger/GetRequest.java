@@ -27,7 +27,7 @@ abstract class GetRequest extends Messenger {
     public JSONObject makeRequest() throws IOException, JSONException {
         URL url = new URL(requestURL);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("GET");
+        urlConnection.setRequestMethod("PUT");
         urlConnection.setRequestProperty("Content-Type", "application/json");
         urlConnection.setRequestProperty("charset", "utf-8");
         urlConnection.setUseCaches(false);

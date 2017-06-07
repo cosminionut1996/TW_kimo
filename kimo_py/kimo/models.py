@@ -68,6 +68,7 @@ class Legatura(models.Model):
         db_table = 'LEGATURA'
 
 
+
 class ZonaAprobata(models.Model):
     id = models.IntegerField(primary_key=True)
     id_parinte = models.IntegerField()
