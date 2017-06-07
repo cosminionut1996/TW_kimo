@@ -6,7 +6,6 @@
 
 
 {% block navbar %}
-    <a class="navbar-brand navbar_button" href="{% url 'kimo:profile' %}">Profile</a>
     <a class="navbar-brand navbar_button" href="{% url 'account_settings:add_child' %}">Add Child</a>
     <a class="navbar-brand navbar_button" href="{% url 'live_map:danger' %}">Add danger zone</a>
     <a class="navbar-brand navbar_button" href="{% url 'live_map:index' %}">Live Map</a>
@@ -18,7 +17,7 @@
 
 {% block logout %}
     <li>
-        <a class="navbar-brand navbar_button " href="{% url 'kimo:login' %}?log_out=1">LogOut</a>
+        <a class="navbar-brand navbar_button " href="{% url 'kimo:login' %}">LogOut</a>
     </li>
 {% endblock %}
 

@@ -21,13 +21,9 @@ class Index(View):
 
 class Login(View):
     def get(self, request):
-        if request.GET.get('log_out'):
-            if request.session.get(SESSION_USER_ID_FIELD_NAME):
-                del request.session[SESSION_USER_ID_FIELD_NAME]
-        context = {}
-        if request.session.get(SESSION_USER_ID_FIELD_NAME, None):
-            context = {'error': 'You are already logged in.'}
-        return render(request, 'kimo/login.html', context=context)
+        if request.session.get(SESSION_USER_ID_FIELD_NAME):
+            del request.session[SESSION_USER_ID_FIELD_NAME]
+        return render(request, 'kimo/login.html')
 
     def post(self, request):
         username = request.POST.get('username')
@@ -103,17 +99,22 @@ class Profile(View):
     def get(self, request):
         idc = request.session.get(SESSION_USER_ID_FIELD_NAME)
         l = list()
-        n_l = list()
-        nr=0
-        for linie in Copil.objects.raw( 'SELECT * FROM Copil c JOIN LEGATURA l on l.id_copil=c.id join utilizator p on p.id=l.id_parinte where l.id_parinte={}'.format(idc)):
+        nr = 0
+        for linie in Copil.objects.raw(
+                'SELECT * '
+                'FROM Copil c JOIN LEGATURA l on l.id_copil=c.id join utilizator p on p.id=l.id_parinte '
+                'where l.id_parinte={}'.format(idc)
+        ):
             l.append({'nume': linie.nume + ' ' + linie.prenume,
                       'locatie': linie.ultima_locatie})
-            nr+=1
+            nr += 1
+
         linie = Utilizator.objects.get(id=idc)
-        n_l = {'nume': linie.nume + ' ' + linie.prenume,
-                   'email': linie.email,
-                   'adresa': linie.adresa + ' / ' + linie.localitate
-                     }
+        n_l = {
+            'nume': linie.nume + ' ' + linie.prenume,
+            'email': linie.email,
+            'adresa': linie.adresa + ' / ' + linie.localitate
+        }
         return render(request, 'kimo/profile.html', context={
             "result": l,
             "parinte": n_l,

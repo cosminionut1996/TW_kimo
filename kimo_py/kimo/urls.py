@@ -19,10 +19,9 @@ from . import views
 
 app_name = 'kimo'
 urlpatterns = [
-    url(r'^$', views.Index.as_view(), name='index'),
+    url(r'^$', views.Profile.as_view(), name='profile'),
     url(r'^login$', views.Login.as_view(), name='login'),
     url(r'^register$', views.Register.as_view(), name='register'),
-    url(r'^profile', views.Profile.as_view(), name='profile'),
     url(r'^user_space/', views.UserSpace.as_view(), name='user_space'),
     # url(r'^injection_vulnerable/', views.InjectionVulnerable.as_view(), name='injection_vulnerable'),
     # url(r'^map/', views.Map.as_view(), name='map'),
