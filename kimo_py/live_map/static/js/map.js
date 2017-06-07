@@ -141,19 +141,6 @@ console.log($("#informatii").size());
 var marker= new Marker(47.158374,27.601104, "test2", "copil2");
 var marker2 = new Marker(48.158374,28.601104, "test3", "copil3");
 
-var p1= new Polygon();
-var p2= new Polygon();
-
-p1.add_points([
-          {lat: 47.16707628945532 , lng: 27.611045837402344},
-          {lat: 47.15190231842864, lng: 27.611560821533203},
-          {lat: 47.16334156019606, lng: 27.630271911621094}
-        ],"zona1","pericol");
- polygons.add_area(p1);
-
-
-
-
 
 markers.add_marker(marker);
 markers.add_marker(marker2);
@@ -161,11 +148,6 @@ var list = markers.get_list();
 
  for (i = 0; i < list.length; i++)
         addMarker(map, list[i].googleLatLng, list[i].title, list[i].content);
-
-
-
-
-
 
 }
 
