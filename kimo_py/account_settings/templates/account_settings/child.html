@@ -5,6 +5,9 @@
 {% block title %}KIMO{% endblock %}
 
 {% block content %}
+
+<script src="{% static 'js/addChild.js' %}"></script>
+
 <div class="vcenter fadeInClass" style="margin-top: 125px;">
     <div class="container">
       <div class="row">
@@ -13,7 +16,7 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-12">
-                  <form id="login-form" action="#" method="post" role="form"
+                  <form id="login-form"  method="post" role="form"
                         style="display: block;">
                     {% csrf_token %}
                     <h2>Child details</h2>
@@ -23,9 +26,12 @@
                       <div class="form-group">
                         <input type="text" name="lastname" id="lastname" tabindex="2" class="form-control" placeholder="Lastname">
                       </div>
-
+                            <input type="submit" name="danger-submit" id="submitbt" value="Generate code" onclick="f1()">
+                            <div id="informatii_copii" style="color: red; background-color: lightblue; display:none">Text
+                            </div>
                       <div class="col-xs-6 form-group pull-right">
-                            <input type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-submit" value="Submit">
+                            <input type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-submit" value="Submit" ">
+
                       </div>
                   </form>
                 </div>
@@ -51,7 +57,7 @@
     <link rel="stylesheet" href="{% static 'css/vertical_align.css' %}">
     <link href="{% static 'css/background.css' %}" rel="stylesheet">
     <link href="{% static 'css/form.css' %}" rel="stylesheet">
-
+    <script src="{% static 'js/addChild.js' %}"></script>
 <style>
 
 .fadeInClass {

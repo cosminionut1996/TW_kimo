@@ -145,7 +145,8 @@ var listp = polygons.get_list();
       var prenume=$(this).find(".z-prenume").text();
       console.log(lat + "   " + lng);
       var coord =  new google.maps.LatLng(lat,lng);
-      addMarker(map,coord,nume,prenume);
+
+      addMarker(map,coord,nume+" "+prenume,nume+" "+prenume);
   }
 
   )
