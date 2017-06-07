@@ -12,10 +12,10 @@ import java.io.IOException;
 
 public abstract class Messenger {
 
-    private static final int port = 8888;
-    private static final String host = "192.168.0.100";
+    private static final int port = 10001;
+    private static final String host = "192.168.0.103";
     private static final String version = "v1";
-    private static final String urlPattern = "http://{host}:{port}/{version}/";
+    private static final String urlPattern = "http://{host}:{port}/";
 
     protected String baseServerURL;
     protected String requestURL;
@@ -24,8 +24,8 @@ public abstract class Messenger {
     public Messenger() {
         this.baseServerURL = urlPattern
                 .replace("{host}", host)
-                .replace("{port}", String.valueOf(port))
-                .replace("{version}", version);
+                .replace("{port}", String.valueOf(port));
+//                .replace("{version}", version);
     }
 
     String getHost() {
