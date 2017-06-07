@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from kimo.authentication import logged_in_only
 from settings import SESSION_USER_ID_FIELD_NAME
-from kimo.models import ZonaRisc
+from kimo.models import ZonaRisc, Device
 
 import json
 
@@ -13,7 +13,8 @@ class Map(View):
         return render(request, 'live_map/google_map.html', context={
             'zone': ZonaRisc.objects.filter(
                 id_utilizator=request.session.get(SESSION_USER_ID_FIELD_NAME)
-            )
+            ),
+            'copii': Device.object.raw('Select * from device d join copil c on d.id_copil=c.id join legatura l on l.id_copil= c.id join utilizator u on u.id=l.id_parinte where u.id={}'.format(request.session.get(SESSION_USER_ID_FIELD_NAME)) )
         })
 
 
