@@ -1,7 +1,12 @@
+import matplotlib.path as mplPath
+import numpy as np
+
+import datetime
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from kimo.models import Device
+from kimo.models import Device, Notificari
+import json
 
 from django.http import HttpResponseRedirect
 
@@ -17,12 +22,28 @@ class RequestPictureView(APIView):
 
 class CheckChildren(APIView):
     def get(self, request, format=None):
-        Device.objects.raw(
-            'select u.id, d.latitudine, d.longitudine, r.coordinates from utilizator u join legatura l on l.id_parinte=u.id join copil c on c.id=l.id_copil join device d on d.id_copil=c.id  join zona_risc r on u.id= r.id_utilizator where u.id={}'.format(
-                request.session.get(SESSION_USER_ID_FIELD_NAME)))
+        res = Device.objects.raw(
+            'select u.id as "id", c.prenume as "pren", d.latitudine as "lat", d.longitudine as "lon", r.coordinates as "crd" '
+            'from utilizator u '
+            'join legatura l on l.id_parinte=u.id '
+            'join copil c on c.id=l.id_copil '
+            'join device d on d.id_copil=c.id  '
+            'join zona_risc r on u.id=r.id_utilizator')
 
-        return Response("Done", status=status.HTTP_400_BAD_REQUEST)
+        for x in res:
+            bbPath = mplPath.Path(
+                np.array([[d["lat"], d["lng"]]
+                          for d in json.loads(x.crd.replace("'", '"'))])
+            )
+            if bbPath.contains_point((x.lat, x.lon)):
+                Notificari(
+                    titlu="Zona riscanta!",
+                    continut="{} a intrat intr-o zona riscanta !".format(x.pren),
+                    ora=datetime.datetime.now(),
+                    culoare='red',
+                    id_parinte=x.id).save()
 
+        return Response("Done", status=status.HTTP_200_OK)
 
 
 class LocationView(APIView):
