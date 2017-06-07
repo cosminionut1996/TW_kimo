@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import View
 from kimo.authentication import logged_in_only
-
+from settings import SESSION_USER_ID_FIELD_NAME
 from kimo.models import ZonaRisc
 
 import json
@@ -26,8 +26,10 @@ class Danger(View):
         zone_name = d.get("name")
         zone_description = d.get("description")
         zone_coordinates = d.get("coordinates")
+        id_utilizator = request.sesion[SESSION_USER_ID_FIELD_NAME]
         new_zone = ZonaRisc(name=zone_name,
                             description=zone_description,
-                            coordinates=zone_coordinates)
+                            coordinates=zone_coordinates,
+                            id_utilizator= id_utilizator)
         new_zone.save()
         return render(request, 'live_map/danger_area.html')
