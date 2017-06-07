@@ -20,5 +20,6 @@ from . import views
 app_name = 'account_settings'
 urlpatterns = [
     url(r'^add_child', views.Child.as_view(), name='add_child'),
+    url(r'^token', views.Token.as_view(), name='token'),
     url(r'^change_password', views.Pass.as_view(), name='change_password'),
 ]
