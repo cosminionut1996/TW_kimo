@@ -141,9 +141,11 @@ var listp = polygons.get_list();
     console.log("copilasul nr 1");
       var lat = $(this).find(".z-longitudine").text();
       var lng = $(this).find(".z-latitudine").text();
+      var nume=$(this).find(".z-nume").text();
+      var prenume=$(this).find(".z-prenume").text();
       console.log(lat + "   " + lng);
       var coord =  new google.maps.LatLng(lat,lng);
-      addMarker(map,coord,"test","test2");
+      addMarker(map,coord,nume,prenume);
   }
 
   )
