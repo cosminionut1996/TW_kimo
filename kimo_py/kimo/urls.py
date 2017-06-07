@@ -23,9 +23,4 @@ urlpatterns = [
     url(r'^login$', views.Login.as_view(), name='login'),
     url(r'^register$', views.Register.as_view(), name='register'),
     url(r'^user_space/', views.UserSpace.as_view(), name='user_space'),
-    # url(r'^injection_vulnerable/', views.InjectionVulnerable.as_view(), name='injection_vulnerable'),
-    # url(r'^map/', views.Map.as_view(), name='map'),
-    # url(r'^notification/', views.Notification.as_view(), name='notification'),
-    # url(r'^add_child/', views.Child.as_view(), name='add_child'),
-    # url(r'^admin/', admin.site.urls, name='admin'),
 ]

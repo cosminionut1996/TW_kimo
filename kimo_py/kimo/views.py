@@ -8,6 +8,7 @@ from kimo.models import Utilizator, Copil
 from kimo.authentication import logged_in_only
 from settings import SESSION_USER_ID_FIELD_NAME
 
+import datetime
 import cx_Oracle
 
 
@@ -41,10 +42,40 @@ class Login(View):
 
 class Register(View):
     def get(self, request):
+        if request.session.get(SESSION_USER_ID_FIELD_NAME):
+            del request.session[SESSION_USER_ID_FIELD_NAME]
         return render(request, 'kimo/register.html')
 
     def post(self, request):
-        return render(request, 'kimo/register.html')
+        e = 'V-ati inregistrat cu success!'
+        parola = request.POST.get('password')
+        conf = request.POST.get('confirm-password')
+        if parola not in [None, ''] and parola != conf:
+            return render(request, 'kimo/register.html', context={
+                'error': "The passwords do not match!",
+            })
+
+        try:
+            Utilizator.objects.create(
+                nume=request.POST.get('nume'),
+                prenume=request.POST.get('prenume'),
+                subscriptie='FREE',
+                adresa=request.POST.get('adresa'),
+                email=request.POST.get('email'),
+                telefon=request.POST.get('telefon'),
+                username=request.POST.get('username'),
+                parola=parola,
+                expirare=datetime.datetime.now() + datetime.timedelta(days=361),
+                localitate=request.POST.get('localitate'),
+                id=Utilizator.objects.all().count() + 1,
+            )
+        except Exception as exc:
+            e = exc
+            return render(request, 'kimo/register.html', context={
+                'error': e,
+            })
+        else:
+            return HttpResponseRedirect(reverse('kimo:profile'))
 
 
 class InjectionVulnerable(View):
