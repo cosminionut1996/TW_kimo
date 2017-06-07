@@ -158,12 +158,6 @@ console.log("nr afisari 3");
 
 
 
-
-
-var marker= new Marker(47.158374,27.601104, "test2", "copil2");
-var marker2 = new Marker(48.158374,28.601104, "test3", "copil3");
-
-
 markers.add_marker(marker);
 markers.add_marker(marker2);
 var list = markers.get_list();
