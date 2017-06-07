@@ -94,6 +94,8 @@ public class SecondActivity extends AppCompatActivity {
 
         }
 
+
+
     }
 
 
@@ -111,14 +113,14 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private void configureButton(){
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(getBaseContext(),android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getBaseContext(),android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-                    return;
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-            }
-        });
+        if (ActivityCompat.checkSelfPermission(getBaseContext(),android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getBaseContext(),android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            return;
+        locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+    }
 
+
+    @Override
+    public void onBackPressed() {
+        System.out.println();
     }
 }
