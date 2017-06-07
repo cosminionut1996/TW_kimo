@@ -14,7 +14,7 @@ class Map(View):
             'zone': ZonaRisc.objects.filter(
                 id_utilizator=request.session.get(SESSION_USER_ID_FIELD_NAME)
             ),
-            'copii': Device.object.raw('Select * from device d join copil c on d.id_copil=c.id join legatura l on l.id_copil= c.id join utilizator u on u.id=l.id_parinte where u.id={}'.format(request.session.get(SESSION_USER_ID_FIELD_NAME)) )
+            'copii': Device.objects.raw('Select * from device d join copil c on d.id_copil=c.id join legatura l on l.id_copil= c.id join utilizator u on u.id=l.id_parinte where u.id={}'.format(request.session.get(SESSION_USER_ID_FIELD_NAME)) )
         })
 
 

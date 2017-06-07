@@ -89,8 +89,11 @@ var lat=new google.maps.LatLng(47.158374,27.601104);
 //var MyDiv1 = document.getElementById("informatii");
 
 
+
+
+
 $(document).ready(function(){
-console.log($("#informatii").size());
+    console.log( " nr afisari 1");
   $("#informatii > div").each(
     function() {
     //console.log("in jquery");
@@ -119,23 +122,39 @@ console.log($("#informatii").size());
       console.log("gata iteratia");
     }
   );
-
-  var listp = polygons.get_list();
+console.log("nr afisari 2");
+var listp = polygons.get_list();
   console.log(listp);
-  //console.log(list_puncte);
- // for (k =0; k<list_puncte.length;k ++)
-   //     console.log(list_puncte[k]);
-
-
 
 
   for ( l=0; l< listp.length; l++)
     {
+
+         console.log("creeam poligoane");
          addPolygon(map, listp[l].get_coordinates() ,listp[l].get_name(), listp[l].get_description() );
 
        }
 
+
+  $("#informatii_copii > div").each(
+  function(){
+    console.log("copilasul nr 1");
+      var lat = $(this).find(".z-longitudine").text();
+      var lng = $(this).find(".z-latitudine").text();
+      console.log(lat + "   " + lng);
+      var coord =  new google.maps.LatLng(lat,lng);
+      addMarker(map,coord,"test","test2");
+  }
+
+  )
+
+console.log("nr afisari 3");
+
+
 });
+
+
+
 
 
 var marker= new Marker(47.158374,27.601104, "test2", "copil2");

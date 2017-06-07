@@ -23,6 +23,16 @@
     {% endfor %}
 </div>
 
+<div id="informatii_copii" style="display: none;">
+    {% for copil in copii %}
+    <div id="copil{{ copil.id }}">
+        <div class="z-longitudine">{{ copil.longitudine }}</div>
+        <div class="z-latitudine">{{ copil.latitudine }}</div>
+    </div>
+    {% endfor %}
+</div>
+
+
 {% endblock %}
 
 {% block footer %}
