@@ -5,12 +5,13 @@
 {% block title %}Signals{% endblock %}
 
 {% block content %}
+<script src="{% static 'js/sendSignal.js' %}"></script>
 
 <nav id="menu" >
      <ul>
-      <li class="house" ><a href="#">Home</a></li>
-      <li class="rain"><a href="#">Rain</a></li>
-      <li class="danger"><a href="#">Danger</a></li>
+      <li id="idjouse" class="house" ><a href="#" onclick="populateMessage('Hai acasa!')">Home</a></li>
+      <li id="idrain" class="rain" ><a href="#" onclick="populateMessage('Vezi ca se anunta ploaie!')">Rain</a></li>
+      <li id="iddanger" class="danger" ><a href="#" onclick="populateMessage('Alte pericole!')" >Danger</a></li>
 
   <div class="current">
     <div class="top-arrow"></div>
@@ -19,6 +20,30 @@
   </div>
     </ul>
 </nav>
+<nav id="copii">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select child
+         <span class="caret"></span></button>
+         <ul class="dropdown-menu">
+             {% for copil in copii %}
+             <li id=copil{{copil.id}} onclick="populateId({{copil.id}})"><a ><strong>{{copil.nume}}  {{copil.prenume}}</strong></a></li>
+            {% endfor %}
+        </ul>
+
+</div>
+</nav>
+
+<div id="divform" class="form" >
+    <form action="{% url 'signals:index' %}" method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="name" id="name" class="target1" style="visibility:hidden">
+        <input type="text" name="description" id="description"  class="target2" style="visibility:hidden">
+
+        <input type="submit" style="visibility:hidden" name="danger-submit" id="submitbtn" value="Submit">
+    </form>
+</div>
+
 
 {% endblock %}
 

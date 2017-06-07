@@ -1,3 +1,23 @@
+.form{
+left: 155px;
+  top: 300px;
+position: absolute;
+}
+
+
+#copii{
+display: inline-block;
+  height:40px;
+  width:110px;
+  left: 485px;
+  top: 230px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: absolute;
+
+
+
+}
 
 #menu{
   display: inline-block;

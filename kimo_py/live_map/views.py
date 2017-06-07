@@ -35,4 +35,5 @@ class Danger(View):
                             coordinates=zone_coordinates,
                             id_utilizator=id_utilizator)
         new_zone.save()
+
         return render(request, 'live_map/danger_area.html')
