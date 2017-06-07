@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
-<<<<<<< Updated upstream
+
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -9,11 +9,11 @@ import string
 
 from kimo.models import Device, Copil
 
-=======
+
 from kimo.models import Copil
 from kimo.models import Legatura
 from settings import SESSION_USER_ID_FIELD_NAME
->>>>>>> Stashed changes
+
 
 class AccountSettings(View):
     def get(self, request):
@@ -26,13 +26,13 @@ class Child(View):
 
     def post(self, request):
         try:
-<<<<<<< Updated upstream
+
             firstname = request.POST.get('firstname')
             lastname = request.POST.get('lastname')
             request.session['child_firstname'] = firstname
             request.session['child_lastname'] = lastname
             return HttpResponseRedirect(reverse('account_settings:token'))
-=======
+
             parinte=request.session.get(SESSION_USER_ID_FIELD_NAME)
             firstname=request.POST.get('firstname')
             lastname=request.POST.get('lastname')
@@ -47,7 +47,7 @@ class Child(View):
 
             legatura=Legatura.objects.raw('insert into legatura(id_parinte,id_copil) values ({},{})'.format(parinte,copil[0].id))
 
->>>>>>> Stashed changes
+
         except Exception as exc:
             e = exc
             return render(request, 'account_settings/child.html', context={
@@ -63,7 +63,7 @@ class Token(View):
             del request.session['child_firstname']
             del request.session['child_lastname']
             token = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
-            Copil.objects.create(prenume=firstname, nume=lastname)
+            c=Copil.objects.create(prenume=firstname, nume=lastname)
             Device.objects.create(id_copil=c.id,token=token)
 
             return render(request, 'account_settings/token.html', context={
