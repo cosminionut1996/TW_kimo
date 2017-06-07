@@ -104,3 +104,13 @@ class Notificari(models.Model):
 
     class Meta:
         db_table = 'NOTIFICARI'
+
+class Signals(models.Model):
+    id = models.IntegerField(primary_key=True)
+    id_parinte = models.IntegerField()
+    id_copil = models.IntegerField()
+    text=models.CharField(max_length=512)
+    extra=models.CharField(max_length=512)
+
+    class Meta:
+        db_table = 'SIGNALS'
