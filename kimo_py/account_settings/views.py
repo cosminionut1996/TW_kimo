@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
+
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -7,6 +8,11 @@ import random
 import string
 
 from kimo.models import Device, Copil
+
+
+from kimo.models import Copil
+from kimo.models import Legatura
+from settings import SESSION_USER_ID_FIELD_NAME
 
 
 class AccountSettings(View):
@@ -20,11 +26,28 @@ class Child(View):
 
     def post(self, request):
         try:
+
             firstname = request.POST.get('firstname')
             lastname = request.POST.get('lastname')
             request.session['child_firstname'] = firstname
             request.session['child_lastname'] = lastname
             return HttpResponseRedirect(reverse('account_settings:token'))
+
+            parinte=request.session.get(SESSION_USER_ID_FIELD_NAME)
+            firstname=request.POST.get('firstname')
+            lastname=request.POST.get('lastname')
+            copil1=Copil.objects.create(
+                nume=request.POST.get('firstname'),
+                prenume=request.POST.get('lastname')
+            )
+            copil1.save()
+
+            copil=Copil.objects.raw('Select * from (select * from copil order by id desc) where rownum<2')
+            print(copil[0].prenume,copil[0].id)
+
+            legatura=Legatura.objects.raw('insert into legatura(id_parinte,id_copil) values ({},{})'.format(parinte,copil[0].id))
+
+
         except Exception as exc:
             e = exc
             return render(request, 'account_settings/child.html', context={
