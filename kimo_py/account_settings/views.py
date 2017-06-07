@@ -6,6 +6,8 @@ from django.urls import reverse
 import random
 import string
 
+from kimo.models import Device, Copil
+
 
 class AccountSettings(View):
     def get(self, request):
@@ -37,15 +39,21 @@ class Token(View):
         if firstname and lastname:
             del request.session['child_firstname']
             del request.session['child_lastname']
+            token = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
+            Copil.objects.create(prenume=firstname, nume=lastname)
+            Device.objects.create(id_copil=c.id,token=token)
+
             return render(request, 'account_settings/token.html', context={
                 'childname': firstname,
                 'childlastname': lastname,
-                'token': ''.join(random.choices(string.ascii_letters + string.digits, k=6))
+                'token': token
             })
-
-        del request.session['child_firstname']
-        del request.session['child_lastname']
-        return HttpResponseRedirect(reverse('account_settings:child'))
+        try:
+            del request.session['child_firstname']
+            del request.session['child_lastname']
+        except:
+            pass
+        return HttpResponseRedirect(reverse('account_settings:add_child'))
 
 
 class Pass(View):

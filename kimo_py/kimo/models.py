@@ -54,6 +54,7 @@ class Device(models.Model):
     id_copil = models.IntegerField()
     longitudine = models.FloatField()
     latitudine = models.FloatField()
+    token = models.CharField(max_length=6)
 
     class Meta:
         db_table = 'DEVICE'
