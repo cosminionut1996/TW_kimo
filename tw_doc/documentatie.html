@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ro-RO">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Kimo</title>
+  <link rel="stylesheet" href="scholarly.css">
+  <!-- <link rel="stylesheet" href="node_modules/prismjs/themes/prism-coy.css">
+  <script src="node_modules/prismjs/prism.js" defer></script> -->
+</head>
+
+<body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
+  <header>
+    <p class="title">KIMO</p>
+      </header>
+  <article id="what" typeof="schema:ScholarlyArticle" resource="#">
+    <h1>Documentatie KIMO</h1>
+    <section>
+      <ol>
+        <li property="schema:author" typeof="sa:ContributorRole">
+          <span property="schema:givenName">Cosmin Ionut</span>
+          <span property="schema:familyName">Schifirnet, </span>
+          </a>
+          <span property="schema:givenName">Silviu</span>
+          <span property="schema:familyName">Munteanu, </span>
+          </a>
+          <span property="schema:givenName">Vladimir</span>
+          <span property="schema:familyName">Ventaniuc, </span>
+          </li>
+      </ol>
+    </section>
+    <section typeof="sa:Abstract" id="abstract">
+      <h2>Scop urmarit</h2>
+      <p>Realizarea unui sistem Web de monitorizare in timp real a unui copil sau grup de copii,
+eventual pe baza unui senzor (de tip beacon) sau dispozitiv (ce poate fi emulat prin software
+cu ajutorul unui API REST). Se ofera in timp real atat locatia copilului pe o harta de tip Google, cat si notificari
+daca se distanteaza la mai mult de M metri de un punct ori multime de puncte de interes sau
+de coordonatele actuale ale unei persoane: parinte, ruda, tutore, altcineva de incredere.
+      </p>
+    </section>
+    <section typeof="sa:MaterialsAndMethods" id="motivation">
+      <h2>Motivatie</h2>
+      <p>
+
+	  Kimo isi propune sa ofere o interfata prietenoasa cu utilizatorul si sa faca mult mai facila urmarirea unui copil, chiar si de la distanta, pentru a se asigura ca acesta este in siguranta.
+	  
+      </p>
+
+    </section>
+
+
+
+
+
+    <section typeof="sa:Results" id="definition">
+      <h2>Descrierea aplicatiei</h2>
+      <p>        Kimo este o aplicatie care faciliteaza urmarirea unor copii si gestionarea acestora.<br>
+	  Locurile in care copii nu au drept de acces sunt salvata intr-o baza de date SQL Oracle, la fel ca si locatia copiilor la un anumit moment de timp. Aplicatia updateaza locatia copiilor atunci cand copilul se deplaseaza. In sectiunea live map, sunt citite din baza de date numele, prenumele si locatia copiilor pentru a fi afisate markerele specifice fiecarui copil. <br>
+	  Utilizatorul poate restrictiona accesul copilului intr-o anumita zona utilizand sectiunea Add danger zone. Google api ofera o interfata usor de folosit pentru utilizatorul final, fiindu-i pusa la dispozitie o unealta de desenarea a unor poligoane. In momentul in care un poligon este creat, in partea de jos a paginii apar doua campuri, nume si descriere, care vor fi completate de catre utilizator si un button de submit pentru memorarea optiunii alese. <br>
+	 In sectiunea de notificari putem vizualiza informatii personalizate despre starea curenta a copilului, de exemplu: coliziunea cu pamantul, intrarea intr-o zona restrictionata si interactiunea acestuia cu alte persoane. <br>
+	Schimbarea setarilor se poate face din pagina profilului, de asemenea, de aici se poate realiza gestiunea copiilor. <br>
+	Pentru introducerea unui copil, se utilizeaza sectiunea Add Child, fiind necesare completarea campurilor nume si prenume. De asemenea, pe device-ul copiilor este necesara instalarea unei aplicatii android pe baza caruia acesta va fi urmarit. Pentru a se face legatura dintre parinte si copil, in aplicatia de pe telefonul copilului este necesara introducerea unui token unic, generat in momentul in care utilizatorul apasa butonul submit.<br>
+	Utilizatorul poate trimite semnale copilului din cadrul sectiunii Signals prin doar doua click-uri. Trebuie selectat mesajul dorit si copilul pe care vrem sa-l informam.<br>
+	In sectiunea Statistics avem posibilitatea de a vedea grafice in functie de anumite categorii: coliziuni cu solul, contact cu animale etc. 
+	
+	
+       
+      </p>
+
+      <p>
+        Fiind o aplicatie web, pentru realizarea acesteia am utilizat HTML5, CSS3 si JavaScript pentru partea de front-end. Pe partea
+        de back-end am folosit framework-ul Django ce are la baza limbajul Python, care faciliteaza dezvoltarea aplicatiei
+        . Pentru stocarea datelor am folosit o baza de date Oracle.
+      </p>
+
+
+
+    </section>
+
+
+
+    <section id="file-headers">
+      <h2>Arhitectura aplicației</h2>
+      <br>
+
+
+      <img src="Diagram.png" alt="Diagrama arhitecturala" />
+      <p class="imagetext">Fig. 1 - Diagrama arhitecturala a aplicației</p>
+
+      <h3> Workflow-ul aplicatiei</h3>
+            <p> Primul contact al unui user cu aplicația noastra va fi prin pagina de inregistrare/autentificare.
+               </p>
+	<p>Dupa inregistrarea pe un cont, utilizatorul este liber sa navigheze pe intreaga aplicatie.
+      <p>
+       Accesarea paginilor se realizeaza utilizand meniul din partea superioara a paginii, care confera acces la paginile de interes pentru utilizator.
+      </p>
+      <p>
+      In containerul care poate fi extins din dreapta utilizatorul poate accesa unul din butoanele 
+      <code> News Feed </code> pentru a vedea ce schimbari au fost produse in ultimul timp legate de contul său spre exemplu cine îl urmărește, 
+      locurile adaugate la favorite de prieteni, locurile in care prietenii au dat check-in.
+      <code>Friends</code> pentru a vizualiza prieteni.
+      <code> Recommendation </code> pentru a vedea recomandarile oferite de aplicatie userului.
+      </p>
+     
+      <p>
+        La baza paginii se afla 3 butoane
+        <code> Profile</code> Acest buton face redirectionare la pagina de editare a profilului.
+        <code> Check-in</code>Cand utilizatorul acceseaza acest buton, se va declanșa un modal de unde utilizatorul poate alege 
+        unul din localurile din imediata apropiere de acesta și să dea un check-in la acea locație.
+        <code> Sign out</code> Pentru a se deloga.
+
+      </p>
+     
+
+    </section>
+
+    <section id="file-headers">
+
+      <h2>Tehnologii</h2>
+      <p>
+        Fiind o aplicatie web, pentru realizarea acesteia vom utiliza <code>HTML5</code>, <code>CSS3</code> si <code>JavaScript</code>    
+            pentru partea de front-end.
+               Pe partea de back-end vom folosi framework-ul <code>Django</code> ce are la
+        baza limbajul <code>Python</code>, care faciliteaza dezvoltarea aplicatiei. Pentru stocarea
+        de informatii utilizam o baza de date <code>Oracle</code>. La nivel de dezvoltare vom folosi
+        <code>GitHub</code> pentru comunicarea si centralizarea datelor, dar si pentru stocarea diferitelor versiuni ale
+        aplicatiei.
+      </p>
+      <p>
+
+        <h3>Front-end</h3>
+        <p>Aplicatia va contine opt pagini principale prin care se va realiza interactiunea cu utilizatorul.</p>
+
+        <h4>Login/Register</h4>
+        <p>
+          Utilizatorul va crea un cont sau se va loga pe un cont existent in aplicatia noastra.
+        </p>
+        <img src="login2.png" alt="Login" />
+        <p class="imagetext">Fig. 2 - Pagina Login</p>
+
+        <h4>Pagina principala�</h4>
+        <p>
+          Aceasta pagina contine informatii despre numele utilizatorului, locatia sa si numarul de copii.
+                    
+        </p>
+        <img src="main.jpg" alt="Main Page" />
+        <p class="imagetext">Fig. 3 - Pagina principala</p>
+
+        <h4>Pagina de setari</h4>
+        <p>
+          In aceasta pagina utilizatorul isi poate schimba parola.         
+        </p>
+        <img src="settings.jpg" alt="Article Page" />
+        <p class="imagetext">Fig. 4 - Pagina de setari</p>
+
+
+<h4>Add child</h4>
+        <p>
+          In aceasta pagina utilizatorul poate introduce copii pe care doreste sa ii urmareasca.
+        </p>
+        <img src="settings.jpg" alt="Article Page" />
+        <p class="imagetext">Fig. 4 - Pagina de setari</p>
+
+
+<h4>Add danger zone </h4>
+        <p>
+          In aceasta pagina utilizatorul poate crea zone de restrictie pentru copii.
+        </p>
+        <img src="danger.png" alt="Article Page" />
+        <p class="imagetext">Fig. 4 - Pagina de setari</p>
+
+
+<h4>Live map</h4>
+        <p>
+          In aceasta pagina utilizatorul poate vizualiza zonele periculoase si pozitia curenta a copiilor.
+        </p>
+        <img src="settings.jpg" alt="Article Page" />
+        <p class="imagetext">Fig. 4 - Pagina de setari</p>
+
+<h4>Notifier</h4>
+        <p>
+          In aceasta pagina utilizatorul poate vizualiza notificarile.
+        </p>
+        <img src="settings.jpg" alt="Article Page" />
+        <p class="imagetext">Fig. 4 - Pagina de setari</p>
+
+<h4>Statistics</h4>
+        <p>
+          In aceasta pagina utilizatorul poate vizualiza statistici personalizate.
+        </p>
+        <img src="login.png" alt="Article Page" />
+        <p class="imagetext">Fig. 4 - Pagina de setari</p>
+
+<h4>Signals</h4>
+        <p>
+          In aceasta pagina utilizatorul poate trimite semnale copiilor.
+        </p>
+        <img src="settings.jpg" alt="Article Page" />
+        <p class="imagetext">Fig. 4 - Pagina de setari</p>
+
+
+
+
+       
+        <h3>Back-end</h3>
+        <p>
+          Primul contact al back-endului cu fluxul aplicatiei are loc in momentul innregistrarii/autentificarii userilor. Back-end-ul
+          se ocupa cu dirijarea tuturor elementelor ce urmeaza a fi utilizate de catre urmatoarele module: Innregistrare,
+          autentificare, request-uri la API.
+        </p>
+        <p>
+          Modulul de autentificare poate fi realizat prin setarea unor cookie-uri in browserul clientului, middleware-ul
+          trimite user-ul la pagina de autentificare. 
+          De asemenea sistemul  de obtinere a datelor este realizat prin intermediul unui  <code>API REST</code>.
+        </p>
+        <p>
+          Comunicarea cu API-ul aplicatiei dar si API-urile diferitelor servicii se va realiza prin trimiterea/primirea de obiecte de tip
+           <code>JSON/XML</code>.
+          Continutul primit va fi prelucrat si afisat utilizatorului. 
+        </p>
+      <p>
+
+    </p>
+
+
+        <h4>Google Maps Api</h4>
+      <p>
+        Conectarea la <a href = "https://developers.google.com/maps/"> API-ul Google</a> se realizeaza prin trimiterea request-urilor
+        la la adresa <a href = "https://maps.googleapis.com/maps/api/"> https://maps.googleapis.com/maps/api/</a> datele fiind transmise in format 
+        <code>json</code> prin request-urile de tip <code> GET </code> se vor obtine atribute-ele de tip 
+         <ul>
+            <li><code>latitudine</code></li>
+            <li><code>longitudine</code></li>     
+	    </ul>
+
+      </p>
+            <h4> Tracking Js </h4>
+      </p>
+		Device-ul copilului introduce in baza de date locatia curenta. Aplicatia citeste din baza de date informatiile introduse si le randeaza intr-un form de unde sunt citite in JavaScript si sunt afisate pe api-ul Google.
+       </p>
+       	<h4> Trimiterea datelor din aplicatia mobila </h4>
+      </p>
+		Folosim REST api pentru a trimite locatia copilului dar si token-ul generat de server in momentul adaugarii unui copil. Fiecare request este trimis automat atunci cand telefonul si-a schimbat locatia.
+       </p>
+
+
+        <h3>Stocarea datelor</h3>
+        <p class="parent">
+          Framework-ul realizeaza legatura dintre baza de date si REST API cu ajutorul driverului <code> Django ORM </code>.
+           Am optat sa lucram cu baza de date Oracle.
+          In figura de jos este prezentata schema bazei de date.
+        </p>
+        <img class="kid" src="UML3.png" alt="The database schema" />
+        <p class="imagetext">Fig. 6 - Schema bazei de date </p>
+        <p>
+          In momentul innregistrarii unui utilizator, in baza de date se stocheaza <code>email-ul</code> (doar daca nu
+          exista deja), precum si <code>password-ul</code> si <code>Full Name</code> introduse de acesta. In baza de date
+          parola unui user se va stoca sub forma de text criptat folosind <code>md5</code>. 
+          <p>
+            Tabela <code>Utilizator</code> retine toate informatiile specifice unui user, daca acesta le-a introdus. 
+            <code>email</code>, <code>First Name</code>, <code>Last Name </code>, <code>image</code>
+
+          </p>        </p>
+
+        <h2>Etapele intermediare ale dezvoltarii proiectului</h2>
+        <ul>
+          <li><b>Saptamana 0:</b> Prezentarea documentației</li>
+          <li><b>Saptamana 1:</b> Partea de gestionare a fluxului aplicației (register,login,setting,account settings) și conceperea
+            bazei de date si REST API-ul</li>
+          <li><b>Saptamana 2:</b> Integrarea de API-uri, crearea sistemului de sugestii </li>
+          <li><b>Saptamana 3:</b> Finisarea integrarii și prezentarea proiectului.</li>
+        </ul> 
+  
+        <h2></h2>
+        <ul>
+          <li> Schifirnet Cosmin Ionut
+            <ul>
+              <li>Apelare REST API si distribuire a informațiilor catre pagină</li>
+              <li>Stilizare si încarcarea datelor la nivelul clientului</li>
+              <li>Integrare QR</li>
+              <li>încarcarea asincronă a datelor prin AJAX</li>
+            </ul>
+          </li>
+           <li> Munteanu Silviu
+            <ul>
+             
+              <li> Design</li>
+              <li> Google Maps API</li>
+              <li> Front-end</li>
+              <li>Încarcarea asicronă a datelor prin AJAX</li>
+            </ul>
+          </li>
+          <li> Ventaniuc Vladimir
+            <ul>
+            
+              <li>Controlere REST API</li>
+              <li>Arhitectura REST API</li>
+              <li>Realitate Augumentată</li>
+              <li> Modularizarea aplicatiei </li>
+            </ul>
+          </li>
+         <li>Guler Afanasie
+            <ul>
+              <li>Gestionare Baza de Date</li>
+              <li>Servicii de preluare a datelor</li>
+              <li>Recunoaștere facială</li>
+
+            </ul>
+          </li>
+    
+        </ul>
+
+        <h2>Bibliografie</h2>
+        <ul>
+          <li><a href="https://developers.google.com/maps/">https://developers.google.com/maps/</a></li>
+          <li><a href="https://github.com/eduardolundgren/tracking.js">https://github.com/eduardolundgren/tracking.js</a></li>
+                    <li><a href="https://www.w3schools.com/">https://www.w3schools.com/</a></li>
+      
+        </ul>
+
+    </section>
+
+
+</body>
+
+</html>
