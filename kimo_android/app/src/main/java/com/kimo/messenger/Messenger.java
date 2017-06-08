@@ -13,7 +13,7 @@ import java.io.IOException;
 public abstract class Messenger {
 
     private static final int port = 10001;
-    private static final String host = "192.168.0.103";
+    private static final String host = "172.17.254.190"; //"192.168.0.103";
     private static final String version = "v1";
     private static final String urlPattern = "http://{host}:{port}/";
 

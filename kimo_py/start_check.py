@@ -2,8 +2,11 @@
 import urllib.request
 import time
 
+ip = '192.168.0.103'
+ip = '172.17.254.190'
+
 if __name__ == '__main__':
-    req = urllib.request.Request("http://192.168.0.103:10001/REST/check")
+    req = urllib.request.Request("http://{}:10001/REST/check".format(ip))
     while True:
         urllib.request.urlopen(req)
         time.sleep(60)
