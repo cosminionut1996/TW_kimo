@@ -3,7 +3,7 @@ import urllib.request
 import time
 
 ip = '192.168.0.103'
-ip = '169.254.64.150'
+ip = '172.20.10.9'
 
 if __name__ == '__main__':
     req = urllib.request.Request("http://{}:10001/REST/check".format(ip))
