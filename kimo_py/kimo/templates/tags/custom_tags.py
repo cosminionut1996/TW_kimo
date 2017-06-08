@@ -10,7 +10,7 @@ register = template.Library()
 
 def get_numar_copii(username):
     ip = '192.168.0.103'
-    ip = '172.17.254.190'
+    ip = '172.20.10.9'
     connection = cx_Oracle.connect('HR/hr@{}:1521/xe'.format(ip))
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM num_questions WHERE username = '{}'".format(username))
