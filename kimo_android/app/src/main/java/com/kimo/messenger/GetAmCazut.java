@@ -1,9 +1,5 @@
 package com.kimo.messenger;
 
-/**
- * Created by munte on 29.05.2017.
- */
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,15 +10,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by cschifirnet on 07-May-17.
+ * Created by munte on 08.06.2017.
  */
 
-public class GetRequest extends Messenger {
+public class GetAmCazut extends Messenger {
 
     String token;
-    private static final String specificURL = "REST/signal/";
+    private static final String specificURL = "REST/accident/" +
+            "";
 
-    public GetRequest(String token) {
+    public GetAmCazut(String token) {
         this.token = token;
         this.requestURL = baseServerURL + specificURL + token;
     }
@@ -65,3 +62,4 @@ public class GetRequest extends Messenger {
         return new JSONObject("{error: 'Unknown error'}");
     }
 }
+

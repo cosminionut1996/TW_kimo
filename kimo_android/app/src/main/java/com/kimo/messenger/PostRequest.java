@@ -1,7 +1,5 @@
 package com.kimo.messenger;
 
-import com.kimo.messenger.Messenger;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
