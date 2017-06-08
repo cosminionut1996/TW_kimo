@@ -5,6 +5,11 @@
 {% block title %}Notification{% endblock %}
 
 {% block content %}
+<div>
+    <form action="{% url 'notifier:clear' %}">
+        <input type="submit" value="clear">
+    </form>
+</div>
 
 <div id="content" class="fadeInClass" style="margin-top: 70px;">
 
@@ -48,8 +53,8 @@
     {% empty %}
       <div class="notification red">
         <div class="info">
-          <h1>TZAPA</h1>
-          <p>TZAPA X2</p>
+          <h1>Nu aveti notificari</h1>
+          <p></p>
         </div>
         <div class="icon">
           <i class="fa fa-heart"></i>

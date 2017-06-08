@@ -20,4 +20,5 @@ from . import views
 app_name = 'notifier'
 urlpatterns = [
     url(r'^$', views.Notifier.as_view(), name='notification'),
+    url(r'^clear/$', views.NotClear.as_view(), name='clear'),
 ]

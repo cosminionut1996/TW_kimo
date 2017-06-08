@@ -20,5 +20,7 @@ from . import views
 app_name = 'REST'
 urlpatterns = [
     url(r'^token/(?P<token>[0-9A-Za-z]{6})$', views.LocationView.as_view(), name='location'),
+    url(r'^signal/(?P<token>[0-9A-Za-z]{6})$', views.SendSignal.as_view(), name='signal'),
+    url(r'^accident/(?P<token>[0-9A-Za-z]{6})$', views.Cazaturi.as_view(), name='accident'),
     url(r'^check$', views.CheckChildren.as_view(), name='check'),
 ]

@@ -6,6 +6,9 @@ from kimo.models import ZonaRisc, Device
 
 import json
 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 class Map(View):
     @logged_in_only
@@ -37,3 +40,11 @@ class Danger(View):
         new_zone.save()
 
         return render(request, 'live_map/danger_area.html')
+
+
+class Delete(View):
+    @logged_in_only
+    def get(self, request):
+        n = request.GET.get("zone_name")
+        ZonaRisc.objects.filter(description=n).delete()
+        return HttpResponseRedirect(reverse("live_map:index"))

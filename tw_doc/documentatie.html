@@ -144,14 +144,14 @@ de coordonatele actuale ale unei persoane: parinte, ruda, tutore, altcineva de i
           Aceasta pagina contine informatii despre numele utilizatorului, locatia sa si numarul de copii.
                     
         </p>
-        <img src="main.jpg" alt="Main Page" />
+        <img src="profile.png" alt="Main Page" />
         <p class="imagetext">Fig. 3 - Pagina principala</p>
 
         <h4>Pagina de setari</h4>
         <p>
           In aceasta pagina utilizatorul isi poate schimba parola.         
         </p>
-        <img src="settings.jpg" alt="Article Page" />
+        <img src="setari.png" alt="Article Page" />
         <p class="imagetext">Fig. 4 - Pagina de setari</p>
 
 
@@ -159,7 +159,7 @@ de coordonatele actuale ale unei persoane: parinte, ruda, tutore, altcineva de i
         <p>
           In aceasta pagina utilizatorul poate introduce copii pe care doreste sa ii urmareasca.
         </p>
-        <img src="settings.jpg" alt="Article Page" />
+        <img src="child.png" alt="Article Page" />
         <p class="imagetext">Fig. 4 - Pagina de setari</p>
 
 
@@ -175,28 +175,28 @@ de coordonatele actuale ale unei persoane: parinte, ruda, tutore, altcineva de i
         <p>
           In aceasta pagina utilizatorul poate vizualiza zonele periculoase si pozitia curenta a copiilor.
         </p>
-        <img src="settings.jpg" alt="Article Page" />
+        <img src="live.png" alt="Article Page" />
         <p class="imagetext">Fig. 4 - Pagina de setari</p>
 
 <h4>Notifier</h4>
         <p>
           In aceasta pagina utilizatorul poate vizualiza notificarile.
         </p>
-        <img src="settings.jpg" alt="Article Page" />
+        <img src="notificare.png" alt="Article Page" />
         <p class="imagetext">Fig. 4 - Pagina de setari</p>
 
 <h4>Statistics</h4>
         <p>
           In aceasta pagina utilizatorul poate vizualiza statistici personalizate.
         </p>
-        <img src="login.png" alt="Article Page" />
+        <img src="statistica.png" alt="Article Page" />
         <p class="imagetext">Fig. 4 - Pagina de setari</p>
 
 <h4>Signals</h4>
         <p>
           In aceasta pagina utilizatorul poate trimite semnale copiilor.
         </p>
-        <img src="settings.jpg" alt="Article Page" />
+        <img src="signal.png" alt="Article Page" />
         <p class="imagetext">Fig. 4 - Pagina de setari</p>
 
 
@@ -259,58 +259,24 @@ de coordonatele actuale ale unei persoane: parinte, ruda, tutore, altcineva de i
           parola unui user se va stoca sub forma de text criptat folosind <code>md5</code>. 
           <p>
             Tabela <code>Utilizator</code> retine toate informatiile specifice unui user, daca acesta le-a introdus. 
-            <code>email</code>, <code>First Name</code>, <code>Last Name </code>, <code>image</code>
+            <code>ID</code>, <code>TIP_SUBSCRIPTIE</code>, <code>NUME</code>, <code>PRENUME</code>,<code>ADRESA</code>,
+<code>NR_TELEFON</code>,
+<code>USERNAME</code>,<code>PAROLA</code>,<code>DATA_EXPIRARE</code>. Acesta este utilizat pentru login si e completat cand se face register.<br>
+<p>
+Tabela <code>COPIL</code> retine toate informatiile specifice unui copil, daca acesta le-a introdus. 
+            <code>ID</code>, <code>NUME</code>, <code>PRENUME</code>. Acesta este legat de tabela <code>UTILIZATOR</code> prin tabela de legatura numita: <code>LEGATURA</code>.<br>
+</p>
+<p>
+Tabela <code>DEVICE</code> are urmatoarele campuri:
+            <code>ID</code>, <code>TOKEN</code>, <code>LONGITUDINE</code>,  <code>LATITUDINE</code>.  Legatura dintre tabela <code>COPIL/code> si <code>DEVICE</code> se face cu ajutorul campui TOKEN.<br>
+</p>
+
+<p>
+Tabela <code>Zona_Risc</code> are urmatoarele campuri: <code>ID</code>, <code> GRAD_PERICOL </code>, <code>TIP_PERICOL</code> . Este legata de tabela <code>UTILIZATOR</code> prin tabela <code>LEGATURA_ZONA</code>.
+
+
 
           </p>        </p>
-
-        <h2>Etapele intermediare ale dezvoltarii proiectului</h2>
-        <ul>
-          <li><b>Saptamana 0:</b> Prezentarea documentației</li>
-          <li><b>Saptamana 1:</b> Partea de gestionare a fluxului aplicației (register,login,setting,account settings) și conceperea
-            bazei de date si REST API-ul</li>
-          <li><b>Saptamana 2:</b> Integrarea de API-uri, crearea sistemului de sugestii </li>
-          <li><b>Saptamana 3:</b> Finisarea integrarii și prezentarea proiectului.</li>
-        </ul> 
-  
-        <h2></h2>
-        <ul>
-          <li> Schifirnet Cosmin Ionut
-            <ul>
-              <li>Apelare REST API si distribuire a informațiilor catre pagină</li>
-              <li>Stilizare si încarcarea datelor la nivelul clientului</li>
-              <li>Integrare QR</li>
-              <li>încarcarea asincronă a datelor prin AJAX</li>
-            </ul>
-          </li>
-           <li> Munteanu Silviu
-            <ul>
-             
-              <li> Design</li>
-              <li> Google Maps API</li>
-              <li> Front-end</li>
-              <li>Încarcarea asicronă a datelor prin AJAX</li>
-            </ul>
-          </li>
-          <li> Ventaniuc Vladimir
-            <ul>
-            
-              <li>Controlere REST API</li>
-              <li>Arhitectura REST API</li>
-              <li>Realitate Augumentată</li>
-              <li> Modularizarea aplicatiei </li>
-            </ul>
-          </li>
-         <li>Guler Afanasie
-            <ul>
-              <li>Gestionare Baza de Date</li>
-              <li>Servicii de preluare a datelor</li>
-              <li>Recunoaștere facială</li>
-
-            </ul>
-          </li>
-    
-        </ul>
-
         <h2>Bibliografie</h2>
         <ul>
           <li><a href="https://developers.google.com/maps/">https://developers.google.com/maps/</a></li>

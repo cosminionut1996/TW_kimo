@@ -9,4 +9,4 @@ if __name__ == '__main__':
     req = urllib.request.Request("http://{}:10001/REST/check".format(ip))
     while True:
         urllib.request.urlopen(req)
-        time.sleep(60)
+        time.sleep(600)

@@ -35,6 +35,12 @@
     {% endfor %}
 </div>
 
+<form action="{% url 'live_map:delete' %}" method="GET">
+    {% csrf_token %}
+    <strong>Name:</strong>
+    <input type="text" name="zone_name" id="name">
+    <input type="submit" name="danger-submit" id="submitbt" value="Delete danger zone">
+</form>
 
 {% endblock %}
 
